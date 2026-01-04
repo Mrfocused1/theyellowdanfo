@@ -1124,9 +1124,11 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               <div className="parallax-bg-2 absolute -inset-4 bg-yellow-400 rotate-2 rounded shadow-lg opacity-20"></div>
               <div className="relative bg-stone-100 p-2 rotate-1 shadow-2xl max-w-md mx-auto">
                 <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
-                  <div className="absolute inset-0 flex items-center justify-center bg-zinc-800">
-                    <Users size={64} className="text-zinc-600" />
-                  </div>
+                  <img
+                    src="https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-326dd94.png/:/cr=t:16.64%25,l:0%25,w:100%25,h:66.72%25"
+                    alt="Funmi Akisanya - Founder"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                   <div className="absolute bottom-4 left-4 bg-red-600 text-white px-2 font-display text-lg">FOUNDER</div>
                 </div>
                 <div className="p-4">
