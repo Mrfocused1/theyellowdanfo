@@ -1125,13 +1125,13 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
           </div>
           <div className="container mx-auto px-6 text-center z-10">
             <div className="inline-block bg-yellow-400 text-black px-3 py-1 font-mono-style font-bold mb-6 rotate-2">
-              LAGOS • LONDON • 2023-2026
+              LAGOS • LONDON
             </div>
             <h1 className="font-display text-7xl md:text-9xl mb-6 text-white drop-shadow-lg leading-[0.9]">
               THE <span className="text-yellow-400">YELLOW</span><br /> DANFO
             </h1>
             <p className="font-mono-style text-stone-300 max-w-xl mx-auto mb-10 text-lg">
-              Step inside. This isn't just a website. It's a journey through the heart of sustainable transportation and cultural storytelling.
+              Step inside The Yellow Danfo, where sustainable transportation meets culture, creativity, and the stories that move us.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <button
