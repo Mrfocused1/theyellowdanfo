@@ -1241,10 +1241,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
             <h2 className="font-display text-5xl md:text-7xl mb-6">THE DRIVER'S <br /> SEAT</h2>
             <div className="prose prose-invert prose-lg font-serif opacity-80 mx-auto">
               <p>
-                "We are not just moving people; we are moving minds."
-              </p>
-              <p>
-                Funmi stands at the intersection of enterprise and art. With a history of elevating Africa's sustainable crafts sector, she launched this platform to turn a cultural icon—the Danfo—into a vehicle for global dialogue.
+                We move people and shift perspectives. The Yellow Danfo sits at the crossroads of enterprise and art. Rooted in a legacy of championing Africa's sustainable crafts sector, the platform reimagines a cultural icon, the Danfo, as a catalyst for global conversation.
               </p>
             </div>
           </div>
