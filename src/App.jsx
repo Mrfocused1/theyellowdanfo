@@ -1131,7 +1131,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               THE <span className="text-yellow-400">YELLOW</span><br /> DANFO
             </h1>
             <p className="font-mono-style text-stone-300 max-w-xl mx-auto mb-10 text-lg">
-              Step inside. This isn't just a website. It's a journey through the heart of sustainable transportation and cultural storytelling.
+              Step inside The Yellow Danfo, where sustainable transportation meets culture, creativity, and the stories that move us.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <button
