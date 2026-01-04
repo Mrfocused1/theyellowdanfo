@@ -43,6 +43,7 @@ const App = ({ onNavigate }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [missionOpen, setMissionOpen] = useState(false);
   const [currentStop, setCurrentStop] = useState("BOARDING");
   const [lastTicket, setLastTicket] = useState(null);
   const [gsapLoaded, setGsapLoaded] = useState(false);
@@ -53,6 +54,7 @@ const App = ({ onNavigate }) => {
   const routeLineRef = useRef(null);
   const busIconRef = useRef(null);
   const destinationTextRef = useRef(null);
+  const missionContainerRef = useRef(null);
 
   // --- CONTENT DATA ---
   const STOPS = [
@@ -198,6 +200,74 @@ const App = ({ onNavigate }) => {
     };
   }, [gsapLoaded, isLoaded]);
 
+  // --- MISSION PAGE ANIMATION ---
+  useLayoutEffect(() => {
+    if (!gsapLoaded || !missionOpen || !missionContainerRef.current) return;
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+
+    const timer = setTimeout(() => {
+      const scrollerEl = missionContainerRef.current.querySelector('.mission-scroller');
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".mission-track",
+          scroller: scrollerEl,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+          snap: {
+            snapTo: "labels",
+            duration: { min: 0.5, max: 2 },
+            delay: 0.1,
+            ease: "power2.inOut"
+          }
+        }
+      });
+
+      tl.addLabel("start");
+      tl.to(".dashed-road-line", { backgroundPosition: "0 5000px", ease: "none", duration: 30 }, 0);
+      tl.to(".mission-bus", { y: "25vh", x: 20, rotation: 1, duration: 2, ease: "power1.inOut" }, 0)
+        .fromTo(".mission-card-1",
+          { opacity: 0, x: -100, rotate: -5 },
+          { opacity: 1, x: 0, rotate: -2, duration: 1.5, ease: "back.out(1.2)" },
+          "<+0.5"
+        );
+      tl.addLabel("stories");
+      tl.to(".mission-bus", { y: "55vh", x: -20, rotation: -1, duration: 17.5, ease: "power1.inOut" })
+        .to(".mission-card-1", { opacity: 0, y: -100, scale: 0.9, duration: 1 }, "<")
+        .fromTo(".mission-card-2",
+          { opacity: 0, x: 100, rotate: 5 },
+          { opacity: 1, x: 0, rotate: 1, duration: 1.5, ease: "back.out(1.2)" },
+          "-=2"
+        );
+      tl.addLabel("bridges");
+      tl.to(".mission-bus", { y: "85vh", x: 0, rotation: 0, duration: 3.5, ease: "power1.inOut" })
+        .to(".mission-card-2", { opacity: 0, y: -100, scale: 0.9, duration: 1 }, "<")
+        .fromTo(".mission-card-3",
+          { opacity: 0, x: -100, rotate: -5 },
+          { opacity: 1, x: 0, rotate: 0, duration: 1.5, ease: "back.out(1.2)" },
+          "-=2"
+        )
+        .to(".mission-bus", { scale: 1.05, duration: 0.5, yoyo: true, repeat: 1 }, ">");
+      tl.addLabel("change");
+      tl.to(".mission-bus", { y: "120vh", x: 0, rotation: 0, duration: 5, ease: "power1.inOut" })
+        .to(".mission-card-3", { opacity: 0, y: -100, scale: 0.9, duration: 1 }, "<")
+        .fromTo(".mission-footer",
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 1.5, ease: "back.out(1.2)" },
+          "-=1"
+        );
+      tl.addLabel("footer");
+
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().filter(st => st.vars.scroller).forEach(st => st.kill());
+    };
+  }, [gsapLoaded, missionOpen]);
+
   // --- HELPERS ---
   const updateDestination = (text) => {
     if (!destinationTextRef.current) return;
@@ -268,6 +338,11 @@ const App = ({ onNavigate }) => {
         }
         .loading-fadeout {
           animation: fadeOut 1s ease-out 3s forwards;
+        }
+        .mission-bus-shadow { filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.5)); }
+        .dashed-road {
+          background-image: linear-gradient(to bottom, #444 50%, transparent 50%);
+          background-size: 2px 60px;
         }
       `}</style>
 
@@ -449,8 +524,8 @@ const App = ({ onNavigate }) => {
             <li
               key={i}
               onClick={() => {
-                if (item === 'About' && onNavigate) {
-                  onNavigate('mission');
+                if (item === 'About') {
+                  setMissionOpen(true);
                 } else if (item === 'Market' && onNavigate) {
                   onNavigate('market');
                 }
@@ -465,6 +540,80 @@ const App = ({ onNavigate }) => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <p className="font-mono-style text-xs text-gray-500">THE YELLOW DANFO</p>
           <p className="font-mono-style text-xs text-gray-600 mt-2">Lagos • Nigeria</p>
+        </div>
+      </div>
+
+      {/* --- MISSION OVERLAY --- */}
+      <div ref={missionContainerRef} className={`fixed inset-0 z-[70] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${missionOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+        <div className="mission-scroller h-full overflow-y-auto overflow-x-hidden bg-zinc-900">
+          <div className="mission-track h-[3000vh] relative">
+            <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+              <div className="absolute top-8 right-8 z-50">
+                <button onClick={() => setMissionOpen(false)} className="text-stone-500 hover:text-yellow-400 font-display text-xl underline decoration-yellow-400">CLOSE</button>
+              </div>
+
+              <div className="absolute top-8 left-8 z-40">
+                <div className="inline-block bg-yellow-400 text-black px-2 font-mono-style font-bold mb-2">MANIFESTO</div>
+                <h1 className="font-display text-4xl md:text-6xl text-white leading-none">OUR <span className="text-yellow-400">ROUTE</span></h1>
+              </div>
+
+              <div className="absolute top-0 bottom-0 w-64 bg-zinc-800 border-x-4 border-dashed border-stone-600">
+                <div className="dashed-road-line absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-2 dashed-road"></div>
+              </div>
+
+              <div className="mission-bus absolute top-[-20vh] z-30 transform -translate-x-1/2">
+                <div className="w-32 h-64 bg-yellow-400 border-4 border-black rounded-lg shadow-2xl relative flex flex-col items-center justify-between p-4 mission-bus-shadow">
+                  <div className="w-full h-8 bg-black/10 rounded-sm"></div>
+                  <div className="font-display text-black text-2xl rotate-180 mb-8 writing-mode-vertical">LAD-505</div>
+                  <div className="w-full h-16 bg-blue-900/40 border-2 border-black/50 rounded-sm backdrop-blur-sm"></div>
+                  <div className="w-full flex justify-between mt-2">
+                    <div className="w-6 h-6 bg-white rounded-full border-2 border-gray-400 shadow-[0_0_10px_white]"></div>
+                    <div className="w-6 h-6 bg-white rounded-full border-2 border-gray-400 shadow-[0_0_10px_white]"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mission-card-1 absolute left-4 md:left-[10%] lg:left-[20%] max-w-md p-8 bg-stone-100 text-black shadow-[10px_10px_0px_rgba(251,191,36,1)] border-l-8 border-black z-40 opacity-0">
+                <div className="text-xs font-mono-style bg-black text-yellow-400 inline-block px-2 mb-2">STOP 01</div>
+                <h2 className="font-display text-4xl mb-4">WE MOVE STORIES</h2>
+                <p className="font-serif leading-relaxed">We ignite conversations that travel beyond borders. Through immersive author talks and narrative events, we amplify African voices that resonate across generations.</p>
+              </div>
+
+              <div className="mission-card-2 absolute right-4 md:right-[10%] lg:right-[20%] max-w-md p-8 bg-yellow-400 text-black shadow-[10px_10px_0px_rgba(0,0,0,1)] border-r-8 border-black z-40 opacity-0">
+                <div className="text-xs font-mono-style bg-white text-black inline-block px-2 mb-2">STOP 02</div>
+                <h2 className="font-display text-4xl mb-4">WE BUILD BRIDGES</h2>
+                <p className="font-serif leading-relaxed">Connecting cultures and creatives. We blend traditional heritage with modern expression, creating platforms where diasporic experiences intersect in global conversations.</p>
+              </div>
+
+              <div className="mission-card-3 absolute left-4 md:left-[10%] lg:left-[20%] max-w-md p-8 bg-zinc-800 text-white shadow-[10px_10px_0px_rgba(255,255,255,0.2)] border-t-8 border-yellow-400 z-40 opacity-0">
+                <div className="text-xs font-mono-style bg-yellow-400 text-black inline-block px-2 mb-2">STOP 03</div>
+                <h2 className="font-display text-4xl mb-4 text-yellow-400">WE CREATE CHANGE</h2>
+                <p className="font-serif leading-relaxed">Art is our catalyst. Through workshops and healing experiences, we make space for personal transformation, equipping changemakers to lead with vision.</p>
+              </div>
+
+              <div className="mission-footer absolute bottom-20 left-1/2 -translate-x-1/2 text-center z-40 opacity-0">
+                <div className="mb-4">
+                  <div className="w-4 h-4 bg-red-600 rounded-full mx-auto mb-2 animate-pulse"></div>
+                  <div className="font-mono-style text-red-600 text-xs tracking-widest">TERMINUS</div>
+                </div>
+                <h2 className="font-display text-4xl md:text-6xl text-white mb-4">END OF <span className="text-yellow-400">ROUTE</span></h2>
+                <p className="font-mono-style text-stone-400 mb-6">Thank you for riding with us</p>
+                <button
+                  onClick={() => setMissionOpen(false)}
+                  className="bg-yellow-400 text-black font-display text-xl px-8 py-4 hover:bg-white transition-colors"
+                >
+                  EXIT BUS
+                </button>
+                <div className="mt-8 font-mono-style text-xs text-stone-600">
+                  © 2024 THE YELLOW DANFO. LAGOS.
+                </div>
+              </div>
+
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-yellow-400/50 animate-bounce font-mono-style text-xs">
+                SCROLL TO DRIVE
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

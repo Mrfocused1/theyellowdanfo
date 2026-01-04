@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import MarketPage from './MarketPage.jsx'
-import AboutPage from './AboutPage.jsx'
 
 // Simple Router Component
 const Router = () => {
@@ -11,14 +10,6 @@ const Router = () => {
 
   if (currentPage === 'market') {
     return <MarketPage onNavigate={setCurrentPage} />;
-  }
-
-  if (currentPage === 'about') {
-    return <AboutPage onNavigate={setCurrentPage} />;
-  }
-
-  if (currentPage === 'mission') {
-    return <AboutPage onNavigate={setCurrentPage} autoOpenMission={true} />;
   }
 
   return <App onNavigate={setCurrentPage} />;
