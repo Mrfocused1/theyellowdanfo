@@ -875,23 +875,20 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
             </div>
 
             {/* Top Section: Book & Synopsis */}
-            <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center mb-24">
 
-              {/* Left: 3D Book */}
-              <div className="relative flex justify-center" style={{ perspective: '1000px' }}>
+              {/* Left: Book Cover Image */}
+              <div className="relative flex justify-center">
                 <div
                   ref={detailBookRef}
-                  className="w-80 h-[500px] bg-white border-4 border-black shadow-[20px_20px_0px_0px_rgba(251,191,36,0.3)] relative transition-shadow duration-300 cursor-pointer"
+                  className="w-64 md:w-80 h-[380px] md:h-[500px] bg-white border-4 border-black shadow-[20px_20px_0px_0px_rgba(251,191,36,0.3)] relative transition-shadow duration-300 cursor-pointer overflow-hidden"
                   style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-yellow-400/20" style={{ transform: 'translateZ(20px)' }}>
-                    <BookOpen size={64} className="mb-4 opacity-50"/>
-                    <h3 className="font-display text-4xl text-center leading-none">THE YELLOW DANFO</h3>
-                    <div className="mt-auto w-full border-t-2 border-black pt-4 flex justify-between font-mono-style text-xs">
-                      <span>F. AKISANYA</span>
-                      <span>2023</span>
-                    </div>
-                  </div>
+                  <img
+                    src="https://m.media-amazon.com/images/I/61+uF7VPLeL.jpg"
+                    alt="The Yellow Danfo - Book Cover"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                   <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-black/20 to-transparent"></div>
                 </div>
               </div>
@@ -1002,8 +999,12 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               <div className="absolute top-4 right-4"><PenTool size={32} className="opacity-20"/></div>
               <h3 className="font-display text-3xl text-black mb-6">FROM THE DRIVER'S LOG</h3>
               <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="w-32 h-32 bg-black grayscale border-4 border-white shadow-lg flex-shrink-0 flex items-center justify-center">
-                  <Users className="text-stone-500 w-16 h-16"/>
+                <div className="w-32 h-32 border-4 border-white shadow-lg flex-shrink-0 overflow-hidden">
+                  <img
+                    src="https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-326dd94.png/:/cr=t:16.64%25,l:0%25,w:100%25,h:66.72%25"
+                    alt="Funmi Akisanya"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <p className="font-serif text-black leading-relaxed mb-4 text-lg italic">
@@ -1236,7 +1237,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
             <div className="relative order-2 md:order-1">
               <div className="parallax-bg-2 absolute -inset-4 bg-yellow-400 rotate-2 rounded shadow-lg opacity-20"></div>
               <div className="relative bg-stone-100 p-2 rotate-1 shadow-2xl max-w-md mx-auto">
-                <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+                <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden">
                   <img
                     src="https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-326dd94.png/:/cr=t:16.64%25,l:0%25,w:100%25,h:66.72%25"
                     alt="Funmi Akisanya - Founder"
