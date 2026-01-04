@@ -141,66 +141,68 @@ const DanfoDiariesPage = ({ onNavigate }) => {
       <div className="texture-noise"></div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b-4 border-yellow-400">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <img
-            src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
-            alt="The Yellow Danfo"
-            className="h-10 md:h-14 w-auto cursor-pointer"
-            onClick={() => onNavigate && onNavigate('home')}
-          />
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            <button
+      <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b-8 border-yellow-400 px-4 md:px-8 py-4 shadow-2xl">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            {/* Logo */}
+            <img
+              src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
+              alt="The Yellow Danfo"
+              className="h-10 md:h-14 w-auto cursor-pointer"
               onClick={() => onNavigate && onNavigate('home')}
-              className="text-stone-400 hover:text-yellow-400 font-mono-style text-sm transition-colors"
-            >
-              HOME
-            </button>
-            <span className="text-yellow-400 font-mono-style text-sm border-b-2 border-yellow-400">
-              DANFO DIARIES
-            </span>
-            <button
-              onClick={() => onNavigate && onNavigate('market')}
-              className="text-stone-400 hover:text-yellow-400 font-mono-style text-sm transition-colors"
-            >
-              MARKET
-            </button>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-yellow-400"
-          >
-            {menuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="md:hidden bg-neutral-900 border-t border-yellow-400/30 py-4">
-            <div className="container mx-auto px-4 flex flex-col gap-4">
-              <button
-                onClick={() => { onNavigate && onNavigate('home'); setMenuOpen(false); }}
-                className="text-stone-400 hover:text-yellow-400 font-mono-style text-lg text-left"
-              >
-                HOME
-              </button>
-              <span className="text-yellow-400 font-mono-style text-lg">
-                DANFO DIARIES
-              </span>
-              <button
-                onClick={() => { onNavigate && onNavigate('market'); setMenuOpen(false); }}
-                className="text-stone-400 hover:text-yellow-400 font-mono-style text-lg text-left"
-              >
-                MARKET
-              </button>
-            </div>
+            />
+            <h1 className="hidden md:block font-display text-2xl md:text-4xl text-yellow-400 tracking-wider">DANFO DIARIES</h1>
           </div>
-        )}
+
+          {/* Right Side Controls */}
+          <div className="flex items-center gap-4">
+            {/* Desktop Menu Button */}
+            <button onClick={() => setMenuOpen(!menuOpen)} className="hidden md:block bg-black border-2 border-yellow-400 text-yellow-400 px-4 py-2 font-display text-sm hover:bg-yellow-400 hover:text-black transition-colors">
+              MENU
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden bg-yellow-400 border-2 border-black p-2 shadow-[4px_4px_0px_#000] hover:translate-y-1 transition-transform">
+              {menuOpen ? <X className="text-black" size={24} /> : <Menu className="text-black" size={24} />}
+            </button>
+          </div>
+        </div>
       </header>
+
+      {/* --- MENU DRAWER --- */}
+      <div className={`fixed inset-y-0 left-0 w-full md:w-96 bg-black text-yellow-400 z-[60] transform transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'} p-8 border-r-8 border-yellow-400 flex flex-col justify-center`}>
+        <button onClick={() => setMenuOpen(false)} className="absolute top-8 right-8 text-white"><X size={32} /></button>
+        <ul className="space-y-6 text-3xl font-black uppercase tracking-tighter">
+          {['Home', 'What We Do', 'The Book', 'Programmes', 'Danfo Diaries', 'Market', 'Contact'].map((item, i) => (
+            <li
+              key={i}
+              onClick={() => {
+                if (item === 'Home' && onNavigate) {
+                  onNavigate('home');
+                } else if (item === 'What We Do' && onNavigate) {
+                  onNavigate('home:whatwedo');
+                } else if (item === 'Market' && onNavigate) {
+                  onNavigate('market');
+                } else if (item === 'Contact' && onNavigate) {
+                  onNavigate('home:contact');
+                } else if (item === 'Programmes' && onNavigate) {
+                  onNavigate('home:programmes');
+                } else if (item === 'The Book' && onNavigate) {
+                  onNavigate('home:book');
+                }
+                setMenuOpen(false);
+              }}
+              className={`hover:text-white cursor-pointer border-b border-gray-800 pb-2 flex items-center gap-4 transition-colors ${item === 'Danfo Diaries' ? 'text-white' : ''}`}
+            >
+              <span className="text-sm font-mono text-gray-500">0{i + 1}</span> {item}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <p className="font-mono-style text-xs text-gray-500">THE YELLOW DANFO</p>
+          <p className="font-mono-style text-xs text-gray-600 mt-2">Lagos • Nigeria</p>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
