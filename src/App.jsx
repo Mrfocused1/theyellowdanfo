@@ -90,10 +90,10 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
   ];
 
   const BOOKS = [
-    { id: 1, title: "The Yellow Danfo", price: "£15,000", type: "Hardcover", tag: "DEBUT" },
-    { id: 2, title: "Lagos Rhythm", price: "£8,500", type: "Paperback", tag: "NEW" },
-    { id: 3, title: "Eko Stories", price: "£10,000", type: "Photo Book", tag: "LIMITED" },
-    { id: 4, title: "Route 99", price: "£5,000", type: "Zine", tag: "ZINE" },
+    { id: 1, title: "The Yellow Danfo", price: "£15.00", type: "Hardcover", tag: "DEBUT", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-0c345ac.png" },
+    { id: 2, title: "Sunshine The Miracle Child", price: "£6.00", type: "Children's Book", tag: "NEW", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-e173850.png" },
+    { id: 3, title: "Second-Class Citizen", price: "£10.00", type: "Buchi Emecheta", tag: "CLASSIC", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/BUCHI%20EMECHETA.jpg" },
+    { id: 4, title: "The Lion And The Jewel", price: "£12.00", type: "Study Notes", tag: "STUDY", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2552.jpg" },
   ];
 
   // --- SCRIPT LOADING ---
@@ -1314,23 +1314,25 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               <div className="font-mono-style text-sm hidden md:block">Quality • Authenticity • Culture</div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
               {BOOKS.map((book) => (
-                <div key={book.id} className="group relative bg-white p-4 pb-8 transform transition-transform hover:-translate-y-2">
+                <div key={book.id} className="group relative bg-white p-3 md:p-4 pb-6 md:pb-8 transform transition-transform hover:-translate-y-2">
                   <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-1 z-10">{book.tag}</div>
 
-                  <div className="aspect-[2/3] bg-stone-200 mb-4 overflow-hidden relative border border-stone-300">
-                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-800 group-hover:scale-105 transition-transform duration-500">
-                      <span className="font-display text-2xl text-stone-600 text-center px-4 leading-none">{book.title}</span>
-                    </div>
+                  <div className="aspect-[3/4] bg-stone-200 mb-3 md:mb-4 overflow-hidden relative border border-stone-300">
+                    <img
+                      src={book.imageUrl}
+                      alt={book.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                     <div className="absolute top-0 right-0 w-0 h-0 border-t-[40px] border-r-[40px] border-t-white border-r-stone-300 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
 
-                  <h3 className="font-display text-2xl text-black leading-none mb-1">{book.title}</h3>
-                  <p className="font-mono-style text-stone-500 text-sm mb-4">{book.type}</p>
+                  <h3 className="font-display text-lg md:text-2xl text-black leading-none mb-1">{book.title}</h3>
+                  <p className="font-mono-style text-stone-500 text-xs md:text-sm mb-3 md:mb-4">{book.type}</p>
 
-                  <div className="flex justify-between items-center border-t border-black pt-4">
-                    <span className="font-bold text-black">{book.price}</span>
+                  <div className="flex justify-between items-center border-t border-black pt-3 md:pt-4">
+                    <span className="font-bold text-black text-sm md:text-base">{book.price}</span>
                     <button
                       onClick={() => addToCart(book.title)}
                       className="bg-black text-yellow-400 p-2 rounded-sm hover:bg-yellow-400 hover:text-black transition-colors"
@@ -1340,6 +1342,16 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Visit the Market Button */}
+            <div className="flex justify-center mt-12">
+              <button
+                onClick={() => onNavigate && onNavigate('market')}
+                className="bg-yellow-400 text-black font-display text-xl md:text-2xl px-8 md:px-12 py-4 border-4 border-black hover:bg-black hover:text-yellow-400 transition-colors shadow-[4px_4px_0px_#000] hover:shadow-[2px_2px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px]"
+              >
+                VISIT THE MARKET
+              </button>
             </div>
           </div>
         </section>
