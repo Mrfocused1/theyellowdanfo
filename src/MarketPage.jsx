@@ -15,14 +15,14 @@ const MarketPage = ({ onNavigate }) => {
 
     // Product Catalog
     const PRODUCTS = [
-        { id: 1, title: "The Yellow Danfo", price: "₦15,000", type: "Hardcover", category: "BOOKS", tag: "DEBUT" },
-        { id: 2, title: "Lagos Rhythm", price: "₦8,500", type: "Paperback", category: "BOOKS", tag: "NEW" },
-        { id: 3, title: "Eko Stories", price: "₦10,000", type: "Photo Book", category: "BOOKS", tag: "LIMITED" },
-        { id: 4, title: "Route 99", price: "₦5,000", type: "Zine", category: "BOOKS", tag: "ZINE" },
-        { id: 5, title: "No Shaking Tee", price: "₦12,000", type: "Apparel", category: "APPAREL", tag: "MERCH" },
-        { id: 6, title: "Danfo Pattern Tote", price: "₦6,000", type: "Accessory", category: "APPAREL", tag: "ECO" },
-        { id: 7, title: "Third Mainland Print", price: "₦25,000", type: "Art Print", category: "PRINTS", tag: "ART" },
-        { id: 8, title: "Conductor Poster", price: "₦8,000", type: "A2 Poster", category: "PRINTS", tag: "VINTAGE" },
+        { id: 1, title: "The Yellow Danfo", price: "£15,000", type: "Hardcover", category: "BOOKS", tag: "DEBUT" },
+        { id: 2, title: "Lagos Rhythm", price: "£8,500", type: "Paperback", category: "BOOKS", tag: "NEW" },
+        { id: 3, title: "Eko Stories", price: "£10,000", type: "Photo Book", category: "BOOKS", tag: "LIMITED" },
+        { id: 4, title: "Route 99", price: "£5,000", type: "Zine", category: "BOOKS", tag: "ZINE" },
+        { id: 5, title: "No Shaking Tee", price: "£12,000", type: "Apparel", category: "APPAREL", tag: "MERCH" },
+        { id: 6, title: "Danfo Pattern Tote", price: "£6,000", type: "Accessory", category: "APPAREL", tag: "ECO" },
+        { id: 7, title: "Third Mainland Print", price: "£25,000", type: "Art Print", category: "PRINTS", tag: "ART" },
+        { id: 8, title: "Conductor Poster", price: "£8,000", type: "A2 Poster", category: "PRINTS", tag: "VINTAGE" },
     ];
 
     const filteredProducts = activeCategory === "ALL"
@@ -120,14 +120,18 @@ const MarketPage = ({ onNavigate }) => {
             < div className={`fixed inset-y-0 left-0 w-full md:w-96 bg-black text-yellow-400 z-[80] transform transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'} p-8 border-r-8 border-yellow-400 flex flex-col justify-center`}>
                 <button onClick={() => setMenuOpen(false)} className="absolute top-8 right-8 text-white"><X size={32} /></button>
                 <ul className="space-y-6 text-3xl font-black uppercase tracking-tighter">
-                    {['Home', 'About', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
+                    {['Home', 'What We Do', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
                         <li
                             key={i}
                             onClick={() => {
                                 if (item === 'Home' && onNavigate) {
                                     onNavigate('home');
-                                } else if (item === 'About' && onNavigate) {
-                                    onNavigate('about');
+                                } else if (item === 'What We Do' && onNavigate) {
+                                    onNavigate('home');
+                                } else if (item === 'Contact' && onNavigate) {
+                                    onNavigate('home');
+                                } else if (item === 'Programmes' && onNavigate) {
+                                    onNavigate('home');
                                 }
                                 setMenuOpen(false);
                             }}
@@ -191,7 +195,7 @@ const MarketPage = ({ onNavigate }) => {
                     <div className="mt-8 border-t-2 border-black pt-4">
                         <div className="flex justify-between font-display text-2xl text-black mb-4">
                             <span>TOTAL</span>
-                            <span>₦{cartCount * 15000}</span>
+                            <span>£{cartCount * 15000}</span>
                         </div>
                         <button className="w-full bg-black text-yellow-400 font-display text-2xl py-4 hover:bg-neutral-800 transition-colors uppercase magnetic-btn flex justify-center items-center group">
                             <span className="mr-2">Checkout</span>

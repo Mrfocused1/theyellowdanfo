@@ -39,14 +39,14 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
     ];
 
     const PRODUCTS = [
-        { id: 1, title: "The Yellow Danfo", price: "₦15,000", type: "Hardcover", category: "BOOKS", tag: "DEBUT" },
-        { id: 2, title: "Lagos Rhythm", price: "₦8,500", type: "Paperback", category: "BOOKS", tag: "NEW" },
-        { id: 3, title: "Eko Stories", price: "₦10,000", type: "Photo Book", category: "BOOKS", tag: "LIMITED" },
-        { id: 4, title: "Route 99", price: "₦5,000", type: "Zine", category: "BOOKS", tag: "ZINE" },
-        { id: 5, title: "No Shaking Tee", price: "₦12,000", type: "Apparel", category: "APPAREL", tag: "MERCH" },
-        { id: 6, title: "Danfo Pattern Tote", price: "₦6,000", type: "Accessory", category: "APPAREL", tag: "ECO" },
-        { id: 7, title: "Third Mainland Print", price: "₦25,000", type: "Art Print", category: "PRINTS", tag: "ART" },
-        { id: 8, title: "Conductor Poster", price: "₦8,000", type: "A2 Poster", category: "PRINTS", tag: "VINTAGE" },
+        { id: 1, title: "The Yellow Danfo", price: "£15,000", type: "Hardcover", category: "BOOKS", tag: "DEBUT" },
+        { id: 2, title: "Lagos Rhythm", price: "£8,500", type: "Paperback", category: "BOOKS", tag: "NEW" },
+        { id: 3, title: "Eko Stories", price: "£10,000", type: "Photo Book", category: "BOOKS", tag: "LIMITED" },
+        { id: 4, title: "Route 99", price: "£5,000", type: "Zine", category: "BOOKS", tag: "ZINE" },
+        { id: 5, title: "No Shaking Tee", price: "£12,000", type: "Apparel", category: "APPAREL", tag: "MERCH" },
+        { id: 6, title: "Danfo Pattern Tote", price: "£6,000", type: "Accessory", category: "APPAREL", tag: "ECO" },
+        { id: 7, title: "Third Mainland Print", price: "£25,000", type: "Art Print", category: "PRINTS", tag: "ART" },
+        { id: 8, title: "Conductor Poster", price: "£8,000", type: "A2 Poster", category: "PRINTS", tag: "VINTAGE" },
     ];
 
     const filteredProducts = activeCategory === "ALL"
@@ -336,12 +336,15 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
             <div className={`fixed inset-y-0 left-0 w-full md:w-96 bg-black text-yellow-400 z-[80] transform transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'} p-8 border-r-8 border-yellow-400 flex flex-col justify-center`}>
                 <button onClick={() => setMenuOpen(false)} className="absolute top-8 right-8 text-white"><X size={32} /></button>
                 <ul className="space-y-6 text-3xl font-black uppercase tracking-tighter">
-                    {['Home', 'About', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
+                    {['Home', 'What We Do', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
                         <li
                             key={i}
                             onClick={() => {
                                 if (item === 'Home' && onNavigate) onNavigate('home');
                                 else if (item === 'Market' && onNavigate) onNavigate('market');
+                                else if (item === 'What We Do' && onNavigate) onNavigate('home');
+                                else if (item === 'Contact' && onNavigate) onNavigate('home');
+                                else if (item === 'Programmes' && onNavigate) onNavigate('home');
                                 setMenuOpen(false);
                             }}
                             className="hover:text-white cursor-pointer border-b border-gray-800 pb-2 flex items-center gap-4 transition-colors"
@@ -614,7 +617,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                                 The debut book that started the movement. An exploration of Lagos through the lens of its most iconic transport system.
                             </p>
                             <div className="flex items-center gap-6">
-                                <div className="font-display text-4xl">₦15,000</div>
+                                <div className="font-display text-4xl">£15,000</div>
                                 <button
                                     onClick={() => addToCart("The Yellow Danfo")}
                                     className="magnetic-btn group bg-black text-white px-8 py-3 font-display text-xl hover:bg-white hover:text-black transition-colors flex items-center gap-2"
@@ -703,7 +706,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                         <div className="w-full max-w-4xl grid md:grid-cols-3 gap-12">
                             {[
                                 { label: "IMPACT", val: "92%" },
-                                { label: "FUNDING", val: "₦50M+" },
+                                { label: "FUNDING", val: "£50M+" },
                                 { label: "REACH", val: "Global" }
                             ].map((meter, i) => (
                                 <div key={i} className="text-center">
