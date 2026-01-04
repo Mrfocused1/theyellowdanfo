@@ -145,7 +145,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
             });
 
             tl.addLabel("start");
-            tl.to(".dashed-road-line", { backgroundPosition: "0 2000px", ease: "none", duration: 10 }, 0);
+            tl.to(".dashed-road-line", { backgroundPosition: "0 5000px", ease: "none", duration: 30 }, 0);
             tl.to(".mission-bus", { y: "25vh", x: 20, rotation: 1, duration: 2, ease: "power1.inOut" }, 0)
                 .fromTo(".mission-card-1",
                     { opacity: 0, x: -100, rotate: -5 },
