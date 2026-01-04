@@ -37,8 +37,8 @@ const DanfoBus = ({ view = 'front', className, style }) => {
 };
 
 
-const App = ({ onNavigate, initialOverlay, onOverlayOpened }) => {
-  const [loading, setLoading] = useState(true); // Initial bouncing bus animation
+const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadComplete }) => {
+  const [loading, setLoading] = useState(!skipLoading); // Only show loading on initial site visit
   const [isLoaded, setIsLoaded] = useState(true); // Skip preloader, go straight to main
   const [cartCount, setCartCount] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
@@ -118,9 +118,17 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened }) => {
 
   // Initial Loading Animation Timer (4 seconds total)
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 4000);
+    if (skipLoading) {
+      // Already loaded, notify parent immediately
+      if (onLoadComplete) onLoadComplete();
+      return;
+    }
+    const timer = setTimeout(() => {
+      setLoading(false);
+      if (onLoadComplete) onLoadComplete();
+    }, 4000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [skipLoading, onLoadComplete]);
 
   // --- ANIMATION LOGIC ---
   useLayoutEffect(() => {
