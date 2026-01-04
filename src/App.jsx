@@ -386,7 +386,7 @@ const App = ({ onNavigate }) => {
 
       {/* --- INITIAL LOADING ANIMATION (DRIVING BUS) --- */}
       {loading && (
-        <div className="fixed inset-0 z-[100] bg-gradient-to-b from-sky-400 via-sky-300 to-sky-200 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
+        <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
           {/* Perspective Road */}
           <div className="absolute inset-0 perspective-road">
             <div className="absolute bottom-0 left-0 right-0 h-[70%] road-surface bg-neutral-700">
@@ -397,9 +397,6 @@ const App = ({ onNavigate }) => {
               <div className="absolute top-0 bottom-0 right-[15%] w-2 bg-white"></div>
             </div>
           </div>
-
-          {/* Horizon line */}
-          <div className="absolute top-[30%] left-0 right-0 h-px bg-neutral-400"></div>
 
           {/* Bus driving towards viewer */}
           <div className="relative z-10 mt-16">
