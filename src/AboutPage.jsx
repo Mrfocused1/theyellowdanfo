@@ -153,7 +153,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                     "<+0.5"
                 );
             tl.addLabel("stories");
-            tl.to(".mission-bus", { y: "55vh", x: -20, rotation: -1, duration: 3.5, ease: "power1.inOut" })
+            tl.to(".mission-bus", { y: "55vh", x: -20, rotation: -1, duration: 17.5, ease: "power1.inOut" })
                 .to(".mission-card-1", { opacity: 0, y: -100, scale: 0.9, duration: 1 }, "<")
                 .fromTo(".mission-card-2",
                     { opacity: 0, x: 100, rotate: 5 },
@@ -170,6 +170,14 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                 )
                 .to(".mission-bus", { scale: 1.05, duration: 0.5, yoyo: true, repeat: 1 }, ">");
             tl.addLabel("change");
+            tl.to(".mission-bus", { y: "120vh", x: 0, rotation: 0, duration: 5, ease: "power1.inOut" })
+                .to(".mission-card-3", { opacity: 0, y: -100, scale: 0.9, duration: 1 }, "<")
+                .fromTo(".mission-footer",
+                    { opacity: 0, y: 50 },
+                    { opacity: 1, y: 0, duration: 1.5, ease: "back.out(1.2)" },
+                    "-=1"
+                );
+            tl.addLabel("footer");
 
         }, 100);
 
@@ -395,7 +403,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
             {/* MISSION OVERLAY - Continued in next message due to length */}
             <div ref={missionContainerRef} className={`fixed inset-0 z-[65] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${missionOpen ? 'translate-y-0' : 'translate-y-full'}`}>
                 <div className="mission-scroller h-full overflow-y-auto overflow-x-hidden bg-zinc-900">
-                    <div className="mission-track h-[1200vh] relative">
+                    <div className="mission-track h-[3000vh] relative">
                         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
                             <div className="absolute top-8 right-8 z-50">
                                 <button onClick={() => setMissionOpen(false)} className="text-stone-500 hover:text-yellow-400 font-display text-xl underline decoration-yellow-400">CLOSE</button>
@@ -438,6 +446,24 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                                 <div className="text-xs font-mono-style bg-yellow-400 text-black inline-block px-2 mb-2">STOP 03</div>
                                 <h2 className="font-display text-4xl mb-4 text-yellow-400">WE CREATE CHANGE</h2>
                                 <p className="font-serif leading-relaxed">Art is our catalyst. Through workshops and healing experiences, we make space for personal transformation, equipping changemakers to lead with vision.</p>
+                            </div>
+
+                            <div className="mission-footer absolute bottom-20 left-1/2 -translate-x-1/2 text-center z-40 opacity-0">
+                                <div className="mb-4">
+                                    <div className="w-4 h-4 bg-red-600 rounded-full mx-auto mb-2 animate-pulse"></div>
+                                    <div className="font-mono-style text-red-600 text-xs tracking-widest">TERMINUS</div>
+                                </div>
+                                <h2 className="font-display text-4xl md:text-6xl text-white mb-4">END OF <span className="text-yellow-400">ROUTE</span></h2>
+                                <p className="font-mono-style text-stone-400 mb-6">Thank you for riding with us</p>
+                                <button
+                                    onClick={() => setMissionOpen(false)}
+                                    className="bg-yellow-400 text-black font-display text-xl px-8 py-4 hover:bg-white transition-colors"
+                                >
+                                    EXIT BUS
+                                </button>
+                                <div className="mt-8 font-mono-style text-xs text-stone-600">
+                                    © 2024 THE YELLOW DANFO. LAGOS.
+                                </div>
                             </div>
 
                             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-yellow-400/50 animate-bounce font-mono-style text-xs">
