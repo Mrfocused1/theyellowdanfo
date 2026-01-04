@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { ShoppingBag, MapPin, Menu, ArrowDown, Ticket, Info, Heart, Users, BookOpen, X, Play, Shirt, Image as ImageIcon, Grid, Compass } from 'lucide-react';
 
-const AboutPage = ({ onNavigate }) => {
+const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [cartCount, setCartCount] = useState(0);
     const [cartOpen, setCartOpen] = useState(false);
     const [shopOpen, setShopOpen] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [missionOpen, setMissionOpen] = useState(false);
+    const [missionOpen, setMissionOpen] = useState(autoOpenMission);
     const [currentStop, setCurrentStop] = useState("BOARDING");
     const [lastTicket, setLastTicket] = useState(null);
     const [gsapLoaded, setGsapLoaded] = useState(false);
