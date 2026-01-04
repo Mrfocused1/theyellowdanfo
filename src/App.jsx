@@ -77,10 +77,10 @@ const App = ({ onNavigate }) => {
   ];
 
   const BOOKS = [
-    { id: 1, title: "The Yellow Danfo", price: "₦15,000", type: "Hardcover", tag: "DEBUT" },
-    { id: 2, title: "Lagos Rhythm", price: "₦8,500", type: "Paperback", tag: "NEW" },
-    { id: 3, title: "Eko Stories", price: "₦10,000", type: "Photo Book", tag: "LIMITED" },
-    { id: 4, title: "Route 99", price: "₦5,000", type: "Zine", tag: "ZINE" },
+    { id: 1, title: "The Yellow Danfo", price: "£15,000", type: "Hardcover", tag: "DEBUT" },
+    { id: 2, title: "Lagos Rhythm", price: "£8,500", type: "Paperback", tag: "NEW" },
+    { id: 3, title: "Eko Stories", price: "£10,000", type: "Photo Book", tag: "LIMITED" },
+    { id: 4, title: "Route 99", price: "£5,000", type: "Zine", tag: "ZINE" },
   ];
 
   // --- SCRIPT LOADING ---
@@ -594,7 +594,7 @@ const App = ({ onNavigate }) => {
           <div className="mt-8 border-t-2 border-black pt-4">
             <div className="flex justify-between font-display text-2xl text-black mb-4">
               <span>TOTAL</span>
-              <span>₦{cartCount * 15000}</span>
+              <span>£{cartCount * 15000}</span>
             </div>
             <button className="w-full bg-black text-yellow-400 font-display text-2xl py-4 hover:bg-neutral-800 transition-colors uppercase">
               Checkout
@@ -997,7 +997,7 @@ const App = ({ onNavigate }) => {
                 The debut book that started the movement. An exploration of Lagos through the lens of its most iconic transport system.
               </p>
               <div className="flex items-center gap-6">
-                <div className="font-display text-4xl">₦15,000</div>
+                <div className="font-display text-4xl">£15,000</div>
                 <button
                   onClick={() => addToCart("The Yellow Danfo")}
                   className="bg-black text-white px-8 py-3 font-display text-xl hover:bg-white hover:text-black transition-colors flex items-center gap-2"
@@ -1083,7 +1083,7 @@ const App = ({ onNavigate }) => {
             <div className="w-full max-w-4xl grid md:grid-cols-3 gap-12">
               {[
                 { label: "IMPACT", val: "92%" },
-                { label: "FUNDING", val: "₦50M+" },
+                { label: "FUNDING", val: "£50M+" },
                 { label: "REACH", val: "Global" }
               ].map((meter, i) => (
                 <div key={i} className="text-center">
