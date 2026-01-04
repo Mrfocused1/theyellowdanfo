@@ -1117,45 +1117,6 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
           </div>
         </section>
 
-        {/* STOP 02: THE DRIVER */}
-        <section id="stop-2" className="min-h-screen flex items-center relative py-20 bg-neutral-900/50 border-y border-white/5">
-          <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative order-2 md:order-1">
-              <div className="parallax-bg-2 absolute -inset-4 bg-yellow-400 rotate-2 rounded shadow-lg opacity-20"></div>
-              <div className="relative bg-stone-100 p-2 rotate-1 shadow-2xl max-w-md mx-auto">
-                <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
-                  <img
-                    src="https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-326dd94.png/:/cr=t:16.64%25,l:0%25,w:100%25,h:66.72%25"
-                    alt="Funmi Akisanya - Founder"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-4 left-4 bg-red-600 text-white px-2 font-display text-lg">FOUNDER</div>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-display text-3xl text-black uppercase">Funmi Akisanya</h3>
-                  <p className="font-mono-style text-xs text-stone-600 mt-2 border-t border-black pt-2">
-                    Award-winning enterprise coach. Pioneer in sustainable arts. Bridging storytelling and cultural identity.
-                  </p>
-                </div>
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-400/80 -rotate-2 opacity-80 backdrop-blur-sm"></div>
-              </div>
-            </div>
-
-            <div className="order-1 md:order-2">
-              <div className="font-mono-style text-yellow-400 mb-4">STOP 02 — THE CONDUCTOR</div>
-              <h2 className="font-display text-5xl md:text-7xl mb-6">THE DRIVER'S <br /> SEAT</h2>
-              <div className="prose prose-invert prose-lg font-serif opacity-80">
-                <p>
-                  "We are not just moving people; we are moving minds."
-                </p>
-                <p>
-                  Funmi stands at the intersection of enterprise and art. With a history of elevating Africa's sustainable crafts sector, she launched this platform to turn a cultural icon—the Danfo—into a vehicle for global dialogue.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* STOP 03: ORIGIN */}
         <section id="stop-3" className="min-h-[80vh] flex items-center justify-center relative py-20">
           <div className="container mx-auto px-6 text-center max-w-4xl">
@@ -1232,6 +1193,45 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                 ))}
               </div>
               <div className="mt-8 text-gray-400 font-mono">Hover windows to read</div>
+            </div>
+          </div>
+        </section>
+
+        {/* THE DRIVER'S SEAT */}
+        <section id="stop-2" className="min-h-screen flex items-center relative py-20 bg-neutral-900/50 border-y border-white/5">
+          <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative order-2 md:order-1">
+              <div className="parallax-bg-2 absolute -inset-4 bg-yellow-400 rotate-2 rounded shadow-lg opacity-20"></div>
+              <div className="relative bg-stone-100 p-2 rotate-1 shadow-2xl max-w-md mx-auto">
+                <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+                  <img
+                    src="https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-326dd94.png/:/cr=t:16.64%25,l:0%25,w:100%25,h:66.72%25"
+                    alt="Funmi Akisanya - Founder"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-4 left-4 bg-red-600 text-white px-2 font-display text-lg">FOUNDER</div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-display text-3xl text-black uppercase">Funmi Akisanya</h3>
+                  <p className="font-mono-style text-xs text-stone-600 mt-2 border-t border-black pt-2">
+                    Award-winning enterprise coach. Pioneer in sustainable arts. Bridging storytelling and cultural identity.
+                  </p>
+                </div>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-400/80 -rotate-2 opacity-80 backdrop-blur-sm"></div>
+              </div>
+            </div>
+
+            <div className="order-1 md:order-2">
+              <div className="font-mono-style text-yellow-400 mb-4">THE CONDUCTOR</div>
+              <h2 className="font-display text-5xl md:text-7xl mb-6">THE DRIVER'S <br /> SEAT</h2>
+              <div className="prose prose-invert prose-lg font-serif opacity-80">
+                <p>
+                  "We are not just moving people; we are moving minds."
+                </p>
+                <p>
+                  Funmi stands at the intersection of enterprise and art. With a history of elevating Africa's sustainable crafts sector, she launched this platform to turn a cultural icon—the Danfo—into a vehicle for global dialogue.
+                </p>
+              </div>
             </div>
           </div>
         </section>
