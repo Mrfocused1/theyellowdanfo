@@ -1140,8 +1140,11 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               >
                 ENTER SHOP
               </button>
-              <button className="border-2 border-yellow-400 text-yellow-400 font-display text-xl px-8 py-4 hover:bg-yellow-400/10 transition-colors">
-                READ THE STORY
+              <button
+                onClick={() => setMissionOpen(true)}
+                className="border-2 border-yellow-400 text-yellow-400 font-display text-xl px-8 py-4 hover:bg-yellow-400/10 transition-colors"
+              >
+                WHAT WE DO
               </button>
             </div>
           </div>
