@@ -689,7 +689,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
       {/* --- MISSION OVERLAY --- */}
       <div ref={missionContainerRef} className={`fixed inset-0 z-[70] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${missionOpen ? 'translate-y-0' : 'translate-y-full pointer-events-none'}`}>
         <div className="mission-scroller h-full overflow-y-auto overflow-x-hidden bg-zinc-900">
-          <div className="mission-track h-[4000vh] relative">
+          <div className="mission-track h-[2000vh] md:h-[4000vh] relative">
             <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
               <div className="absolute top-8 right-8 z-50">
                 <button onClick={() => setMissionOpen(false)} className="text-stone-500 hover:text-yellow-400 font-display text-xl underline decoration-yellow-400">CLOSE</button>
@@ -1119,7 +1119,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
       <div ref={containerRef} className={`stop-content relative z-10 pt-32 pb-24 md:pl-20 md:pr-4 ${isLoaded ? 'block' : 'hidden'}`}>
 
         {/* STOP 01: DEPOT */}
-        <section id="stop-1" className="min-h-screen flex items-center justify-center relative py-20">
+        <section id="stop-1" className="min-h-[70vh] md:min-h-[80vh] flex items-center justify-center relative py-10 md:py-20">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="parallax-bg-1 absolute top-0 right-0 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl"></div>
           </div>
@@ -1140,15 +1140,18 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               >
                 ENTER SHOP
               </button>
-              <button className="border-2 border-yellow-400 text-yellow-400 font-display text-xl px-8 py-4 hover:bg-yellow-400/10 transition-colors">
-                READ THE STORY
+              <button
+                onClick={() => setMissionOpen(true)}
+                className="border-2 border-yellow-400 text-yellow-400 font-display text-xl px-8 py-4 hover:bg-yellow-400/10 transition-colors"
+              >
+                WHAT WE DO
               </button>
             </div>
           </div>
         </section>
 
         {/* STOP 03: ORIGIN */}
-        <section id="stop-3" className="min-h-[80vh] flex items-center justify-center relative py-20">
+        <section id="stop-3" className="min-h-[60vh] md:min-h-[70vh] flex items-center justify-center relative py-10 md:py-16">
           <div className="container mx-auto px-6 text-center max-w-4xl">
             <div className="parallax-bg-3 inline-block">
               <div className="bus-stripe h-4 w-full mb-8"></div>
@@ -1193,8 +1196,8 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
           </div>
         </section>
 
-        {/* STOP 05: INSIDE THE STORY (FROM ORIGINAL) */}
-        <section id="stop-5" className="py-32 relative overflow-hidden bg-gray-900">
+        {/* STOP 05: INSIDE THE STORY (FROM ORIGINAL) - Hidden on mobile */}
+        <section id="stop-5" className="hidden md:block py-32 relative overflow-hidden bg-gray-900">
           <div className="container mx-auto px-4 relative z-10 text-center text-white">
             <div className="mb-8 border-l-8 border-yellow-400 pl-6 relative inline-block text-left">
               <div className="absolute -left-[30px] top-0 bg-yellow-400 border-2 border-black w-10 h-10 flex items-center justify-center font-bold text-sm shadow-[2px_2px_0px_#000] text-black">
