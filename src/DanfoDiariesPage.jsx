@@ -143,12 +143,12 @@ const DanfoDiariesPage = ({ onNavigate }) => {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b-4 border-yellow-400">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <button
+          <img
+            src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
+            alt="The Yellow Danfo"
+            className="h-10 md:h-14 w-auto cursor-pointer"
             onClick={() => onNavigate && onNavigate('home')}
-            className="font-display text-2xl md:text-3xl text-yellow-400 hover:text-white transition-colors"
-          >
-            THE YELLOW DANFO
-          </button>
+          />
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">

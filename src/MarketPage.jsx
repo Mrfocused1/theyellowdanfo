@@ -111,12 +111,20 @@ const MarketPage = ({ onNavigate }) => {
             <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b-8 border-yellow-400 px-4 md:px-8 py-4 shadow-2xl">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
+                        {/* Logo */}
+                        <img
+                            src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
+                            alt="The Yellow Danfo"
+                            className="h-10 md:h-14 w-auto cursor-pointer"
+                            onClick={() => onNavigate && onNavigate('home')}
+                        />
+
                         {/* Mobile Menu Button */}
                         <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden bg-yellow-400 border-2 border-black p-2 shadow-[4px_4px_0px_#000] hover:translate-y-1 transition-transform">
                             {menuOpen ? <X className="text-black" size={24} /> : <Menu className="text-black" size={24} />}
                         </button>
 
-                        <h1 className="font-display text-2xl md:text-4xl text-yellow-400 tracking-wider">MARKET TERMINUS</h1>
+                        <h1 className="hidden md:block font-display text-2xl md:text-4xl text-yellow-400 tracking-wider">MARKET TERMINUS</h1>
                         <div className="hidden md:block bg-yellow-400 text-black px-2 py-1 font-mono-style text-xs font-bold">OFFICIAL STORE</div>
                     </div>
 
