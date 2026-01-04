@@ -90,10 +90,10 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
   ];
 
   const BOOKS = [
-    { id: 1, title: "The Yellow Danfo", price: "£15,000", type: "Hardcover", tag: "DEBUT" },
-    { id: 2, title: "Lagos Rhythm", price: "£8,500", type: "Paperback", tag: "NEW" },
-    { id: 3, title: "Eko Stories", price: "£10,000", type: "Photo Book", tag: "LIMITED" },
-    { id: 4, title: "Route 99", price: "£5,000", type: "Zine", tag: "ZINE" },
+    { id: 1, title: "The Yellow Danfo", price: "£15.00", type: "Hardcover", tag: "DEBUT", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-0c345ac.png" },
+    { id: 2, title: "Sunshine The Miracle Child", price: "£6.00", type: "Children's Book", tag: "NEW", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-e173850.png" },
+    { id: 3, title: "Second-Class Citizen", price: "£10.00", type: "Buchi Emecheta", tag: "CLASSIC", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/BUCHI%20EMECHETA.jpg" },
+    { id: 4, title: "The Lion And The Jewel", price: "£12.00", type: "Study Notes", tag: "STUDY", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2552.jpg" },
   ];
 
   // --- SCRIPT LOADING ---
@@ -1117,45 +1117,6 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
           </div>
         </section>
 
-        {/* STOP 02: THE DRIVER */}
-        <section id="stop-2" className="min-h-screen flex items-center relative py-20 bg-neutral-900/50 border-y border-white/5">
-          <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative order-2 md:order-1">
-              <div className="parallax-bg-2 absolute -inset-4 bg-yellow-400 rotate-2 rounded shadow-lg opacity-20"></div>
-              <div className="relative bg-stone-100 p-2 rotate-1 shadow-2xl max-w-md mx-auto">
-                <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
-                  <img
-                    src="https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-326dd94.png/:/cr=t:16.64%25,l:0%25,w:100%25,h:66.72%25"
-                    alt="Funmi Akisanya - Founder"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-4 left-4 bg-red-600 text-white px-2 font-display text-lg">FOUNDER</div>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-display text-3xl text-black uppercase">Funmi Akisanya</h3>
-                  <p className="font-mono-style text-xs text-stone-600 mt-2 border-t border-black pt-2">
-                    Award-winning enterprise coach. Pioneer in sustainable arts. Bridging storytelling and cultural identity.
-                  </p>
-                </div>
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-400/80 -rotate-2 opacity-80 backdrop-blur-sm"></div>
-              </div>
-            </div>
-
-            <div className="order-1 md:order-2">
-              <div className="font-mono-style text-yellow-400 mb-4">STOP 02 — THE CONDUCTOR</div>
-              <h2 className="font-display text-5xl md:text-7xl mb-6">THE DRIVER'S <br /> SEAT</h2>
-              <div className="prose prose-invert prose-lg font-serif opacity-80">
-                <p>
-                  "We are not just moving people; we are moving minds."
-                </p>
-                <p>
-                  Funmi stands at the intersection of enterprise and art. With a history of elevating Africa's sustainable crafts sector, she launched this platform to turn a cultural icon—the Danfo—into a vehicle for global dialogue.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* STOP 03: ORIGIN */}
         <section id="stop-3" className="min-h-[80vh] flex items-center justify-center relative py-20">
           <div className="container mx-auto px-6 text-center max-w-4xl">
@@ -1180,7 +1141,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                 The debut book that started the movement. An exploration of Lagos through the lens of its most iconic transport system.
               </p>
               <div className="flex items-center gap-6">
-                <div className="font-display text-4xl">£15,000</div>
+                <div className="font-display text-4xl">£15.00</div>
                 <button
                   onClick={() => addToCart("The Yellow Danfo")}
                   className="bg-black text-white px-8 py-3 font-display text-xl hover:bg-white hover:text-black transition-colors flex items-center gap-2"
@@ -1190,15 +1151,12 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               </div>
             </div>
             <div className="relative flex justify-center parallax-bg-4">
-              <div className="w-80 h-[500px] bg-white border-4 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] relative rotate-3 hover:rotate-0 transition-transform duration-500">
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-yellow-400/20">
-                  <BookOpen size={64} className="mb-4 opacity-50" />
-                  <h3 className="font-display text-4xl text-center leading-none">THE YELLOW DANFO</h3>
-                  <div className="mt-auto w-full border-t-2 border-black pt-4 flex justify-between font-mono-style text-xs">
-                    <span>F. AKISANYA</span>
-                    <span>2023</span>
-                  </div>
-                </div>
+              <div className="w-64 md:w-80 h-[400px] md:h-[500px] bg-white border-4 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] relative rotate-3 hover:rotate-0 transition-transform duration-500 overflow-hidden">
+                <img
+                  src="https://m.media-amazon.com/images/I/61+uF7VPLeL.jpg"
+                  alt="The Yellow Danfo - Book Cover"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
                 <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-black/20 to-transparent"></div>
               </div>
             </div>
@@ -1235,6 +1193,45 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                 ))}
               </div>
               <div className="mt-8 text-gray-400 font-mono">Hover windows to read</div>
+            </div>
+          </div>
+        </section>
+
+        {/* THE DRIVER'S SEAT */}
+        <section id="stop-2" className="min-h-screen flex items-center relative py-20 bg-neutral-900/50 border-y border-white/5">
+          <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative order-2 md:order-1">
+              <div className="parallax-bg-2 absolute -inset-4 bg-yellow-400 rotate-2 rounded shadow-lg opacity-20"></div>
+              <div className="relative bg-stone-100 p-2 rotate-1 shadow-2xl max-w-md mx-auto">
+                <div className="aspect-[3/4] bg-neutral-800 relative overflow-hidden grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+                  <img
+                    src="https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-326dd94.png/:/cr=t:16.64%25,l:0%25,w:100%25,h:66.72%25"
+                    alt="Funmi Akisanya - Founder"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-4 left-4 bg-red-600 text-white px-2 font-display text-lg">FOUNDER</div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-display text-3xl text-black uppercase">Funmi Akisanya</h3>
+                  <p className="font-mono-style text-xs text-stone-600 mt-2 border-t border-black pt-2">
+                    Award-winning enterprise coach. Pioneer in sustainable arts. Bridging storytelling and cultural identity.
+                  </p>
+                </div>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-400/80 -rotate-2 opacity-80 backdrop-blur-sm"></div>
+              </div>
+            </div>
+
+            <div className="order-1 md:order-2">
+              <div className="font-mono-style text-yellow-400 mb-4">THE CONDUCTOR</div>
+              <h2 className="font-display text-5xl md:text-7xl mb-6">THE DRIVER'S <br /> SEAT</h2>
+              <div className="prose prose-invert prose-lg font-serif opacity-80">
+                <p>
+                  "We are not just moving people; we are moving minds."
+                </p>
+                <p>
+                  Funmi stands at the intersection of enterprise and art. With a history of elevating Africa's sustainable crafts sector, she launched this platform to turn a cultural icon—the Danfo—into a vehicle for global dialogue.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -1314,23 +1311,25 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               <div className="font-mono-style text-sm hidden md:block">Quality • Authenticity • Culture</div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
               {BOOKS.map((book) => (
-                <div key={book.id} className="group relative bg-white p-4 pb-8 transform transition-transform hover:-translate-y-2">
+                <div key={book.id} className="group relative bg-white p-3 md:p-4 pb-6 md:pb-8 transform transition-transform hover:-translate-y-2">
                   <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-1 z-10">{book.tag}</div>
 
-                  <div className="aspect-[2/3] bg-stone-200 mb-4 overflow-hidden relative border border-stone-300">
-                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-800 group-hover:scale-105 transition-transform duration-500">
-                      <span className="font-display text-2xl text-stone-600 text-center px-4 leading-none">{book.title}</span>
-                    </div>
+                  <div className="aspect-[3/4] bg-stone-200 mb-3 md:mb-4 overflow-hidden relative border border-stone-300">
+                    <img
+                      src={book.imageUrl}
+                      alt={book.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                     <div className="absolute top-0 right-0 w-0 h-0 border-t-[40px] border-r-[40px] border-t-white border-r-stone-300 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
 
-                  <h3 className="font-display text-2xl text-black leading-none mb-1">{book.title}</h3>
-                  <p className="font-mono-style text-stone-500 text-sm mb-4">{book.type}</p>
+                  <h3 className="font-display text-lg md:text-2xl text-black leading-none mb-1">{book.title}</h3>
+                  <p className="font-mono-style text-stone-500 text-xs md:text-sm mb-3 md:mb-4">{book.type}</p>
 
-                  <div className="flex justify-between items-center border-t border-black pt-4">
-                    <span className="font-bold text-black">{book.price}</span>
+                  <div className="flex justify-between items-center border-t border-black pt-3 md:pt-4">
+                    <span className="font-bold text-black text-sm md:text-base">{book.price}</span>
                     <button
                       onClick={() => addToCart(book.title)}
                       className="bg-black text-yellow-400 p-2 rounded-sm hover:bg-yellow-400 hover:text-black transition-colors"
@@ -1340,6 +1339,16 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Visit the Market Button */}
+            <div className="flex justify-center mt-12">
+              <button
+                onClick={() => onNavigate && onNavigate('market')}
+                className="bg-yellow-400 text-black font-display text-xl md:text-2xl px-8 md:px-12 py-4 border-4 border-black hover:bg-black hover:text-yellow-400 transition-colors shadow-[4px_4px_0px_#000] hover:shadow-[2px_2px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px]"
+              >
+                VISIT THE MARKET
+              </button>
             </div>
           </div>
         </section>
