@@ -132,6 +132,8 @@ const MarketPage = ({ onNavigate }) => {
                                     onNavigate('home:contact');
                                 } else if (item === 'Programmes' && onNavigate) {
                                     onNavigate('home:programmes');
+                                } else if (item === 'The Book' && onNavigate) {
+                                    onNavigate('home:book');
                                 }
                                 setMenuOpen(false);
                             }}

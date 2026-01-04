@@ -345,6 +345,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                                 else if (item === 'What We Do' && onNavigate) onNavigate('home:whatwedo');
                                 else if (item === 'Contact' && onNavigate) onNavigate('home:contact');
                                 else if (item === 'Programmes' && onNavigate) onNavigate('home:programmes');
+                                else if (item === 'The Book' && onNavigate) onNavigate('home:book');
                                 setMenuOpen(false);
                             }}
                             className="hover:text-white cursor-pointer border-b border-gray-800 pb-2 flex items-center gap-4 transition-colors"

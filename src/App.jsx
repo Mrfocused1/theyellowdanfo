@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { ShoppingBag, MapPin, Menu, ArrowDown, Ticket, Info, Heart, Users, BookOpen, X, Play, Compass, Mail, FileText, CheckCircle, Scissors } from 'lucide-react';
+import { ShoppingBag, MapPin, Menu, ArrowDown, Ticket, Info, Heart, Users, BookOpen, X, Play, Compass, Mail, FileText, CheckCircle, Scissors, Star, List, PenTool } from 'lucide-react';
 
 // DanfoBus SVG Component (Front View)
 const DanfoBus = ({ view = 'front', className, style }) => {
@@ -46,6 +46,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
   const [missionOpen, setMissionOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
+  const [bookOpen, setBookOpen] = useState(false);
   const [formStatus, setFormStatus] = useState("IDLE"); // IDLE, SENDING, SENT
 
   // Handle initial overlay from navigation
@@ -54,6 +55,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
       if (initialOverlay === 'contact') setContactOpen(true);
       else if (initialOverlay === 'whatwedo') setMissionOpen(true);
       else if (initialOverlay === 'programmes') setWorkshopOpen(true);
+      else if (initialOverlay === 'book') setBookOpen(true);
       if (onOverlayOpened) onOverlayOpened();
     }
   }, [initialOverlay, onOverlayOpened]);
@@ -69,6 +71,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
   const destinationTextRef = useRef(null);
   const missionContainerRef = useRef(null);
   const contactContainerRef = useRef(null);
+  const detailBookRef = useRef(null);
 
   // --- CONTENT DATA ---
   const STOPS = [
@@ -637,6 +640,8 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                   setContactOpen(true);
                 } else if (item === 'Programmes') {
                   setWorkshopOpen(true);
+                } else if (item === 'The Book') {
+                  setBookOpen(true);
                 }
                 setMenuOpen(false);
               }}
@@ -818,6 +823,164 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                   <div className="font-mono-style text-xs text-yellow-400 mb-1">WORKSHOP INSTRUCTOR</div>
                   <h4 className="font-display text-2xl text-white">EXPERIENCED, QUALIFIED & CERTIFIED</h4>
                   <p className="text-stone-500 text-sm mt-1">Guiding you from basics to mastery.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* --- "THE BOOK" (MANIFESTO) OVERLAY --- */}
+      <div className={`fixed inset-0 z-[73] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] overflow-y-auto ${bookOpen ? 'translate-y-0' : 'translate-y-full pointer-events-none'}`}>
+        <div className="min-h-full pt-32 pb-20">
+          <div className="container mx-auto px-6 max-w-6xl">
+
+            {/* Header */}
+            <div className="flex justify-between items-start mb-16">
+              <div>
+                <div className="inline-block bg-yellow-400 text-black px-2 font-mono-style font-bold mb-4 transform -rotate-1">VEHICLE PARTICULARS</div>
+                <h1 className="font-display text-5xl md:text-7xl text-white leading-none">THE <span className="text-yellow-400">MANIFESTO</span></h1>
+              </div>
+              <button onClick={() => setBookOpen(false)} className="text-stone-500 hover:text-yellow-400 font-display text-xl underline decoration-yellow-400">CLOSE</button>
+            </div>
+
+            {/* Top Section: Book & Synopsis */}
+            <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+
+              {/* Left: 3D Book */}
+              <div className="relative flex justify-center" style={{ perspective: '1000px' }}>
+                <div
+                  ref={detailBookRef}
+                  className="w-80 h-[500px] bg-white border-4 border-black shadow-[20px_20px_0px_0px_rgba(251,191,36,0.3)] relative transition-shadow duration-300 cursor-pointer"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-yellow-400/20" style={{ transform: 'translateZ(20px)' }}>
+                    <BookOpen size={64} className="mb-4 opacity-50"/>
+                    <h3 className="font-display text-4xl text-center leading-none">THE YELLOW DANFO</h3>
+                    <div className="mt-auto w-full border-t-2 border-black pt-4 flex justify-between font-mono-style text-xs">
+                      <span>F. AKISANYA</span>
+                      <span>2023</span>
+                    </div>
+                  </div>
+                  <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-black/20 to-transparent"></div>
+                </div>
+              </div>
+
+              {/* Right: Synopsis */}
+              <div>
+                <h2 className="font-display text-3xl text-yellow-400 mb-6">AT THE FRONTIER OF SUSTAINABLE TRANSPORTATION</h2>
+                <div className="prose prose-invert prose-lg text-stone-300 font-serif leading-relaxed">
+                  <p className="mb-6">
+                    More than just a transit system, the Danfo is the heartbeat of Lagos. This book is a cultural blueprint, a moving manifesto, and a love letter to the resilience of a city that never stops.
+                  </p>
+                  <p className="mb-6">
+                    Funmi Akisanya explores how these yellow buses weave through the chaos to create order, fueling the economic engine of Nigeria while defining its visual identity. It delves into the potential for sustainable evolution without losing the soul of the streets.
+                  </p>
+                  <ul className="space-y-2 font-mono-style text-sm text-yellow-400 mt-8">
+                    <li className="flex gap-2">★ Hardcover: 240 Pages</li>
+                    <li className="flex gap-2">★ Full-Color Photography</li>
+                    <li className="flex gap-2">★ Essays & Interviews</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Purchase Section: Ticket Counters */}
+            <div className="bg-stone-100 text-black p-12 border-8 border-black relative overflow-hidden mb-24">
+              <div className="absolute top-0 right-0 p-4 font-mono-style text-xs font-bold opacity-50">ISSUED AT LAGOS HQ</div>
+
+              <h3 className="font-display text-4xl mb-12 text-center border-b-2 border-black pb-4 inline-block mx-auto">GET YOUR TICKET (BUY COPY)</h3>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                {/* Option 1: Direct */}
+                <div className="text-center group cursor-pointer" onClick={() => addToCart("The Yellow Danfo")}>
+                  <div className="w-20 h-20 bg-yellow-400 border-4 border-black rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <ShoppingBag size={32}/>
+                  </div>
+                  <h4 className="font-display text-2xl">OFFICIAL SHOP</h4>
+                  <p className="font-mono-style text-xs text-stone-500 mb-4">Direct from Author</p>
+                  <span className="bg-black text-white px-4 py-2 font-bold hover:bg-yellow-400 hover:text-black transition-colors inline-block">ADD TO CART</span>
+                </div>
+
+                {/* Option 2: Local */}
+                <div className="text-center group">
+                  <div className="w-20 h-20 bg-white border-4 border-black rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <MapPin size={32}/>
+                  </div>
+                  <h4 className="font-display text-2xl">LAGOS STORES</h4>
+                  <p className="font-mono-style text-xs text-stone-500 mb-4">Rovingheights / Jazzhole</p>
+                  <span className="border-2 border-black px-4 py-2 font-bold hover:bg-black hover:text-white transition-colors inline-block">VIEW LIST</span>
+                </div>
+
+                {/* Option 3: Global */}
+                <div className="text-center group">
+                  <div className="w-20 h-20 bg-white border-4 border-black rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <Compass size={32}/>
+                  </div>
+                  <h4 className="font-display text-2xl">INTERNATIONAL</h4>
+                  <p className="font-mono-style text-xs text-stone-500 mb-4">Amazon / Waterstones</p>
+                  <span className="border-2 border-black px-4 py-2 font-bold hover:bg-black hover:text-white transition-colors inline-block">ORDER ONLINE</span>
+                </div>
+              </div>
+            </div>
+
+            {/* SECTION: INSIDE THE ENGINE (Chapters) */}
+            <div className="mb-24">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-yellow-400 p-2 border-2 border-black">
+                  <List size={24} className="text-black"/>
+                </div>
+                <h3 className="font-display text-3xl text-white">INSIDE THE ENGINE</h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  { num: "01", title: "THE YELLOW VEINS", desc: "Mapping the chaotic yet rhythmic arteries of Lagos transportation." },
+                  { num: "02", title: "CONDUCTOR'S CALL", desc: "The language, the hustle, and the unwritten rules of the road." },
+                  { num: "03", title: "WHEELS OF CHANGE", desc: "Sustainability meets tradition: The future of African mobility." },
+                  { num: "04", title: "FACES IN THE WINDOW", desc: "Portraits of the millions who move the city every day." }
+                ].map((chap) => (
+                  <div key={chap.num} className="bg-zinc-800 border-l-4 border-yellow-400 p-6 hover:bg-zinc-700 transition-colors">
+                    <div className="font-mono-style text-yellow-400 text-sm mb-2">CHAPTER {chap.num}</div>
+                    <h4 className="font-display text-xl text-white mb-2">{chap.title}</h4>
+                    <p className="font-serif text-stone-400 text-sm">{chap.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* SECTION: PASSENGER REVIEWS */}
+            <div className="mb-24 relative">
+              <h3 className="font-display text-3xl text-white mb-8 text-right">PASSENGER REVIEWS</h3>
+              <div className="flex flex-col md:flex-row gap-8">
+                <div className="bg-white text-black p-6 shadow-[8px_8px_0px_#FBBF24] transform -rotate-1 relative flex-1">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border border-black shadow-sm"></div>
+                  <div className="flex gap-1 text-yellow-500 mb-4"><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/></div>
+                  <p className="font-serif italic mb-4">"A masterclass in storytelling. Funmi captures the smell of fuel and the sound of the streets perfectly."</p>
+                  <p className="font-mono-style text-xs font-bold">— Tunde A., Urban Planner</p>
+                </div>
+                <div className="bg-white text-black p-6 shadow-[8px_8px_0px_#FBBF24] transform rotate-2 relative mt-8 md:mt-0 flex-1">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border border-black shadow-sm"></div>
+                  <div className="flex gap-1 text-yellow-500 mb-4"><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/><Star fill="currentColor" size={16}/></div>
+                  <p className="font-serif italic mb-4">"Finally, a book that treats the Danfo not just as a bus, but as a cultural icon. Essential reading."</p>
+                  <p className="font-mono-style text-xs font-bold">— The Lagos Review</p>
+                </div>
+              </div>
+            </div>
+
+            {/* SECTION: THE DRIVER'S NOTE */}
+            <div className="bg-yellow-400 p-8 border-4 border-black relative">
+              <div className="absolute top-4 right-4"><PenTool size={32} className="opacity-20"/></div>
+              <h3 className="font-display text-3xl text-black mb-6">FROM THE DRIVER'S LOG</h3>
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="w-32 h-32 bg-black grayscale border-4 border-white shadow-lg flex-shrink-0 flex items-center justify-center">
+                  <Users className="text-stone-500 w-16 h-16"/>
+                </div>
+                <div>
+                  <p className="font-serif text-black leading-relaxed mb-4 text-lg italic">
+                    "I wrote this because the story of Lagos cannot be told without its wheels. Every dent on a Danfo tells a story of survival. This book is my attempt to document that resilience before the landscape changes forever."
+                  </p>
+                  <p className="font-mono-style text-sm font-bold">— Funmi Akisanya</p>
                 </div>
               </div>
             </div>
