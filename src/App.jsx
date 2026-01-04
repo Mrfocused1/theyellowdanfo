@@ -339,20 +339,16 @@ const App = ({ onNavigate }) => {
         .loading-fadeout {
           animation: fadeOut 1s ease-out 3s forwards;
         }
-        @keyframes busGlide {
-          0%, 100% { transform: translateX(-8px) rotate(-1deg); }
-          50% { transform: translateX(8px) rotate(1deg); }
-        }
         @keyframes busApproach {
-          0% { transform: scale(0.6); }
-          100% { transform: scale(1.2); }
+          0% { transform: scale(0.5); }
+          100% { transform: scale(1.1); }
         }
         @keyframes roadLinesApproach {
           from { background-position: 0 0; }
           to { background-position: 0 -80px; }
         }
         .loading-bus {
-          animation: busGlide 0.8s ease-in-out infinite, busApproach 3s ease-out forwards;
+          animation: busApproach 3s ease-out forwards;
         }
         .loading-road-lines {
           background-image: linear-gradient(to bottom, white 50%, transparent 50%);
@@ -386,7 +382,7 @@ const App = ({ onNavigate }) => {
 
       {/* --- INITIAL LOADING ANIMATION (DRIVING BUS) --- */}
       {loading && (
-        <div className="fixed inset-0 z-[100] bg-gradient-to-b from-sky-400 via-sky-300 to-sky-200 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
+        <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
           {/* Perspective Road */}
           <div className="absolute inset-0 perspective-road">
             <div className="absolute bottom-0 left-0 right-0 h-[70%] road-surface bg-neutral-700">
@@ -397,9 +393,6 @@ const App = ({ onNavigate }) => {
               <div className="absolute top-0 bottom-0 right-[15%] w-2 bg-white"></div>
             </div>
           </div>
-
-          {/* Horizon line */}
-          <div className="absolute top-[30%] left-0 right-0 h-px bg-neutral-400"></div>
 
           {/* Bus driving towards viewer */}
           <div className="relative z-10 mt-16">
