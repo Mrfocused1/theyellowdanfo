@@ -37,7 +37,7 @@ const DanfoBus = ({ view = 'front', className, style }) => {
 };
 
 
-const App = ({ onNavigate }) => {
+const App = ({ onNavigate, initialOverlay, onOverlayOpened }) => {
   const [loading, setLoading] = useState(true); // Initial bouncing bus animation
   const [isLoaded, setIsLoaded] = useState(true); // Skip preloader, go straight to main
   const [cartCount, setCartCount] = useState(0);
@@ -47,6 +47,16 @@ const App = ({ onNavigate }) => {
   const [contactOpen, setContactOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
   const [formStatus, setFormStatus] = useState("IDLE"); // IDLE, SENDING, SENT
+
+  // Handle initial overlay from navigation
+  useEffect(() => {
+    if (initialOverlay) {
+      if (initialOverlay === 'contact') setContactOpen(true);
+      else if (initialOverlay === 'whatwedo') setMissionOpen(true);
+      else if (initialOverlay === 'programmes') setWorkshopOpen(true);
+      if (onOverlayOpened) onOverlayOpened();
+    }
+  }, [initialOverlay, onOverlayOpened]);
   const [currentStop, setCurrentStop] = useState("BOARDING");
   const [lastTicket, setLastTicket] = useState(null);
   const [gsapLoaded, setGsapLoaded] = useState(false);
