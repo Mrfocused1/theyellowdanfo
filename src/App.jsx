@@ -713,6 +713,13 @@ const App = ({ onNavigate }) => {
             {/* Inner Content Area */}
             <div className="relative z-10 flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-8 p-4 md:p-8">
 
+              {/* Close Button */}
+              <div className="absolute top-2 right-2 md:top-4 md:right-4 z-50">
+                <button onClick={() => setContactOpen(false)} className="bg-black text-yellow-400 hover:bg-yellow-400 hover:text-black p-2 rounded-full transition-colors border-2 border-black">
+                  <X size={24} />
+                </button>
+              </div>
+
               {/* Left Info Panel */}
               <div className="md:col-span-4 flex flex-col text-black bg-white/20 p-4 md:p-6 backdrop-blur-sm border-2 border-black rounded shadow-lg md:transform md:-rotate-1">
               <div>
@@ -749,9 +756,8 @@ const App = ({ onNavigate }) => {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center mb-6 border-b-2 border-black pb-2">
+                <div className="mb-6 border-b-2 border-black pb-2">
                   <h3 className="font-mono-style text-lg font-bold">PASSENGER MANIFEST</h3>
-                  <button onClick={() => setContactOpen(false)}><X className="text-black hover:text-red-600" size={24} /></button>
                 </div>
 
                 <form onSubmit={handleContactSubmit} className="space-y-6">
