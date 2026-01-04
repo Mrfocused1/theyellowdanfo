@@ -39,7 +39,7 @@ const DanfoBus = ({ view = 'front', className, style }) => {
 
 const App = ({ onNavigate }) => {
   const [loading, setLoading] = useState(true); // Initial bouncing bus animation
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true); // Skip preloader, go straight to main
   const [cartCount, setCartCount] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -301,8 +301,6 @@ const App = ({ onNavigate }) => {
     }
   };
 
-  const handleStart = () => setIsLoaded(true);
-
   // --- STYLES ---
   const fontLink = (
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -407,24 +405,6 @@ const App = ({ onNavigate }) => {
           <div className="mt-4 w-48 h-5 bg-white border-4 border-black rounded-sm p-1 relative z-10 shadow-lg">
             <div className="h-full bg-yellow-400 animate-pulse w-full rounded-sm"></div>
           </div>
-        </div>
-      )}
-
-      {/* --- PRELOADER / IGNITION (START ENGINE) --- */}
-      {!loading && !isLoaded && (
-        <div className="fixed inset-0 z-50 bg-neutral-900 flex items-center justify-center flex-col p-6 text-center">
-          <h1 className="font-display text-6xl md:text-8xl text-yellow-400 mb-4 tracking-tighter">THE YELLOW DANFO</h1>
-          <p className="font-mono-style text-stone-400 mb-8 max-w-md">
-            Caution: This vehicle makes frequent stops.
-            <br />Please secure your belongings.
-          </p>
-          <button
-            onClick={handleStart}
-            className="group relative px-8 py-4 bg-yellow-400 text-black font-display text-2xl tracking-wide hover:bg-yellow-300 transition-all clip-ticket"
-          >
-            START ENGINE
-            <div className="absolute inset-x-0 bottom-0 h-1 bg-black group-hover:h-2 transition-all"></div>
-          </button>
         </div>
       )}
 
