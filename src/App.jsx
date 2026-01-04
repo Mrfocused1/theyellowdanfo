@@ -1180,7 +1180,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                 The debut book that started the movement. An exploration of Lagos through the lens of its most iconic transport system.
               </p>
               <div className="flex items-center gap-6">
-                <div className="font-display text-4xl">£15,000</div>
+                <div className="font-display text-4xl">£15.00</div>
                 <button
                   onClick={() => addToCart("The Yellow Danfo")}
                   className="bg-black text-white px-8 py-3 font-display text-xl hover:bg-white hover:text-black transition-colors flex items-center gap-2"
@@ -1190,15 +1190,12 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
               </div>
             </div>
             <div className="relative flex justify-center parallax-bg-4">
-              <div className="w-80 h-[500px] bg-white border-4 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] relative rotate-3 hover:rotate-0 transition-transform duration-500">
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-yellow-400/20">
-                  <BookOpen size={64} className="mb-4 opacity-50" />
-                  <h3 className="font-display text-4xl text-center leading-none">THE YELLOW DANFO</h3>
-                  <div className="mt-auto w-full border-t-2 border-black pt-4 flex justify-between font-mono-style text-xs">
-                    <span>F. AKISANYA</span>
-                    <span>2023</span>
-                  </div>
-                </div>
+              <div className="w-64 md:w-80 h-[400px] md:h-[500px] bg-white border-4 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] relative rotate-3 hover:rotate-0 transition-transform duration-500 overflow-hidden">
+                <img
+                  src="https://m.media-amazon.com/images/I/61+uF7VPLeL.jpg"
+                  alt="The Yellow Danfo - Book Cover"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
                 <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-black/20 to-transparent"></div>
               </div>
             </div>
