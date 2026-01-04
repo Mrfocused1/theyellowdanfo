@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { ShoppingBag, MapPin, Menu, ArrowDown, Ticket, Info, Heart, Users, BookOpen, X, Play, Compass, Mail, FileText, CheckCircle } from 'lucide-react';
+import { ShoppingBag, MapPin, Menu, ArrowDown, Ticket, Info, Heart, Users, BookOpen, X, Play, Compass, Mail, FileText, CheckCircle, Scissors } from 'lucide-react';
 
 // DanfoBus SVG Component (Front View)
 const DanfoBus = ({ view = 'front', className, style }) => {
@@ -45,6 +45,7 @@ const App = ({ onNavigate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [missionOpen, setMissionOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [workshopOpen, setWorkshopOpen] = useState(false);
   const [formStatus, setFormStatus] = useState("IDLE"); // IDLE, SENDING, SENT
   const [currentStop, setCurrentStop] = useState("BOARDING");
   const [lastTicket, setLastTicket] = useState(null);
@@ -76,10 +77,10 @@ const App = ({ onNavigate }) => {
   ];
 
   const BOOKS = [
-    { id: 1, title: "The Yellow Danfo", price: "₦15,000", type: "Hardcover", tag: "DEBUT" },
-    { id: 2, title: "Lagos Rhythm", price: "₦8,500", type: "Paperback", tag: "NEW" },
-    { id: 3, title: "Eko Stories", price: "₦10,000", type: "Photo Book", tag: "LIMITED" },
-    { id: 4, title: "Route 99", price: "₦5,000", type: "Zine", tag: "ZINE" },
+    { id: 1, title: "The Yellow Danfo", price: "£15,000", type: "Hardcover", tag: "DEBUT" },
+    { id: 2, title: "Lagos Rhythm", price: "£8,500", type: "Paperback", tag: "NEW" },
+    { id: 3, title: "Eko Stories", price: "£10,000", type: "Photo Book", tag: "LIMITED" },
+    { id: 4, title: "Route 99", price: "£5,000", type: "Zine", tag: "ZINE" },
   ];
 
   // --- SCRIPT LOADING ---
@@ -593,7 +594,7 @@ const App = ({ onNavigate }) => {
           <div className="mt-8 border-t-2 border-black pt-4">
             <div className="flex justify-between font-display text-2xl text-black mb-4">
               <span>TOTAL</span>
-              <span>₦{cartCount * 15000}</span>
+              <span>£{cartCount * 15000}</span>
             </div>
             <button className="w-full bg-black text-yellow-400 font-display text-2xl py-4 hover:bg-neutral-800 transition-colors uppercase">
               Checkout
@@ -606,16 +607,18 @@ const App = ({ onNavigate }) => {
       <div className={`fixed inset-y-0 left-0 w-full md:w-96 bg-black text-yellow-400 z-[60] transform transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'} p-8 border-r-8 border-yellow-400 flex flex-col justify-center`}>
         <button onClick={() => setMenuOpen(false)} className="absolute top-8 right-8 text-white"><X size={32} /></button>
         <ul className="space-y-6 text-3xl font-black uppercase tracking-tighter">
-          {['Home', 'About', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
+          {['Home', 'What We Do', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
             <li
               key={i}
               onClick={() => {
-                if (item === 'About') {
+                if (item === 'What We Do') {
                   setMissionOpen(true);
                 } else if (item === 'Market' && onNavigate) {
                   onNavigate('market');
                 } else if (item === 'Contact') {
                   setContactOpen(true);
+                } else if (item === 'Programmes') {
+                  setWorkshopOpen(true);
                 }
                 setMenuOpen(false);
               }}
@@ -693,6 +696,114 @@ const App = ({ onNavigate }) => {
                 SCROLL TO DRIVE
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* --- WORKSHOPS OVERLAY (THE ACADEMY) --- */}
+      <div className={`fixed inset-0 z-[72] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] overflow-y-auto ${workshopOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+        <div className="min-h-full pt-8 pb-20">
+          <div className="container mx-auto px-6 max-w-6xl">
+
+            {/* Header */}
+            <div className="flex justify-between items-start mb-16">
+              <div>
+                <div className="inline-block bg-yellow-400 text-black px-2 font-mono-style font-bold mb-4 transform -rotate-1">SKILL ACQUISITION</div>
+                <h1 className="font-display text-5xl md:text-7xl text-white leading-none">THE DANFO <span className="text-yellow-400">ACADEMY</span></h1>
+                <p className="mt-4 text-stone-400 font-serif max-w-lg">Practical, hands-on workshops for parents, professionals, and anyone who wants to confidently care for Afro, curly, and coily hair.</p>
+              </div>
+              <button onClick={() => setWorkshopOpen(false)} className="text-stone-500 hover:text-yellow-400 font-display text-xl underline decoration-yellow-400">CLOSE</button>
+            </div>
+
+            {/* Hero Cards */}
+            <div className="grid md:grid-cols-2 gap-8 mb-20">
+              <div className="bg-yellow-400 p-8 border-4 border-black shadow-[10px_10px_0px_rgba(255,255,255,0.1)] relative overflow-hidden group">
+                <Scissors className="absolute -right-4 -bottom-4 text-black/10 transform rotate-45" size={200} />
+                <h3 className="font-display text-4xl text-black mb-4 relative z-10">PRACTICAL SKILLS</h3>
+                <p className="font-serif text-black/80 relative z-10">From foundational care to artistic mastery. Practice on professional mannequins and gain real-world confidence.</p>
+              </div>
+              <div className="bg-stone-800 p-8 border-l-8 border-yellow-400 flex flex-col justify-center">
+                <h3 className="font-display text-3xl text-white mb-4">"Turn stressful hair time into quality bonding time."</h3>
+                <ul className="space-y-2 font-mono-style text-sm text-stone-400">
+                  <li className="flex items-center gap-2"><CheckCircle size={14} className="text-yellow-400" /> All products & tools provided</li>
+                  <li className="flex items-center gap-2"><CheckCircle size={14} className="text-yellow-400" /> Take-home care kit</li>
+                  <li className="flex items-center gap-2"><CheckCircle size={14} className="text-yellow-400" /> 2 weeks of follow-up support</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Main Content Grid */}
+            <div className="grid md:grid-cols-12 gap-12 mb-20">
+              {/* Left: Overview */}
+              <div className="md:col-span-5">
+                <h3 className="font-display text-3xl text-white mb-8 border-b border-stone-700 pb-2">WORKSHOP OVERVIEW</h3>
+                <div className="space-y-6">
+                  {[
+                    "Learn to identify hair textures and types",
+                    "Gain foundational knowledge of natural hair care, braiding, and canerow/cornrow hairstyles",
+                    "Develop creative hair styling skills using safe, eco-friendly hair products",
+                    "Understand tools, techniques, and hygiene practices for working with natural hair and extensions",
+                    "Build confidence, self-esteem, and community connections through inclusive learning"
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4 group">
+                      <span className="font-display text-yellow-400 text-xl">0{i + 1}</span>
+                      <p className="text-stone-300 font-serif group-hover:text-white transition-colors">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Detailed Content */}
+              <div className="md:col-span-7 bg-stone-100 text-black p-8 shadow-xl md:transform md:rotate-1 relative">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-400/50 backdrop-blur-sm -mt-4 transform -rotate-1"></div>
+                <h3 className="font-display text-3xl mb-6 text-center">CURRICULUM</h3>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-bold font-mono-style mb-4 border-b-2 border-black pb-1">NATURAL HAIR CARE</h4>
+                    <ul className="space-y-2 text-sm list-disc pl-4 font-serif">
+                      <li>Introduction to braiding techniques</li>
+                      <li>Advanced braiding and styling designs</li>
+                      <li>Using eco-friendly products and tools</li>
+                      <li>Safe & hygienic extension application</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-bold font-mono-style mb-4 border-b-2 border-black pb-1">SKILL DEVELOPMENT</h4>
+                    <ul className="space-y-2 text-sm list-disc pl-4 font-serif">
+                      <li>Hands-on mannequin & model practice</li>
+                      <li>Understanding hair health principles</li>
+                      <li>Creative styling for personal/pro use</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Section */}
+            <div className="grid md:grid-cols-2 gap-8 border-t border-stone-800 pt-12">
+              <div>
+                <h3 className="font-display text-2xl text-white mb-4">WHO SHOULD ATTEND?</h3>
+                <ul className="space-y-3 text-stone-400 text-sm font-mono-style">
+                  <li className="flex gap-3"><span className="text-yellow-400">→</span> Beginners & intermediates interested in eco-friendly practices</li>
+                  <li className="flex gap-3"><span className="text-yellow-400">→</span> Hairdressing students expanding technical skills</li>
+                  <li className="flex gap-3"><span className="text-yellow-400">→</span> Parents & guardians wanting practical guidance</li>
+                  <li className="flex gap-3"><span className="text-yellow-400">→</span> Enthusiasts eager to learn modest & fashionable styles</li>
+                </ul>
+              </div>
+
+              <div className="bg-zinc-800 p-6 flex items-center gap-6 border border-stone-700">
+                <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Users size={32} className="text-black" />
+                </div>
+                <div>
+                  <div className="font-mono-style text-xs text-yellow-400 mb-1">WORKSHOP INSTRUCTOR</div>
+                  <h4 className="font-display text-2xl text-white">EXPERIENCED, QUALIFIED & CERTIFIED</h4>
+                  <p className="text-stone-500 text-sm mt-1">Guiding you from basics to mastery.</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -886,7 +997,7 @@ const App = ({ onNavigate }) => {
                 The debut book that started the movement. An exploration of Lagos through the lens of its most iconic transport system.
               </p>
               <div className="flex items-center gap-6">
-                <div className="font-display text-4xl">₦15,000</div>
+                <div className="font-display text-4xl">£15,000</div>
                 <button
                   onClick={() => addToCart("The Yellow Danfo")}
                   className="bg-black text-white px-8 py-3 font-display text-xl hover:bg-white hover:text-black transition-colors flex items-center gap-2"
@@ -965,26 +1076,8 @@ const App = ({ onNavigate }) => {
           </div>
         </section>
 
-        {/* STOP 07: IMPACT */}
-        <section id="stop-7" className="py-32 border-y border-yellow-400 bg-black">
-          <div className="container mx-auto px-6 flex flex-col items-center">
-            <h2 className="font-display text-yellow-400 text-4xl mb-12 uppercase tracking-widest border-b border-yellow-400 pb-2">Dashboard Metrics</h2>
-            <div className="w-full max-w-4xl grid md:grid-cols-3 gap-12">
-              {[
-                { label: "IMPACT", val: "92%" },
-                { label: "FUNDING", val: "₦50M+" },
-                { label: "REACH", val: "Global" }
-              ].map((meter, i) => (
-                <div key={i} className="text-center">
-                  <div className="h-40 w-40 rounded-full border-8 border-neutral-800 border-t-yellow-400 border-r-yellow-400 mx-auto mb-4 rotate-45 flex items-center justify-center bg-neutral-900 shadow-[0_0_20px_rgba(251,191,36,0.2)]">
-                    <div className="-rotate-45 font-mono-style text-2xl font-bold text-white">{meter.val}</div>
-                  </div>
-                  <h3 className="font-display text-xl text-stone-400">{meter.label}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* STOP 07: Placeholder for scroll continuity */}
+        <section id="stop-7" className="hidden"></section>
 
         {/* STOP 08: PROGRAMMES (FROM ORIGINAL) */}
         <section id="stop-8" className="py-12 bg-yellow-400 border-t-4 border-b-4 border-black overflow-hidden">
