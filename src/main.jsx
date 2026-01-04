@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import MarketPage from './MarketPage.jsx'
+import DanfoDiariesPage from './DanfoDiariesPage.jsx'
 
 // Simple Router Component
 const Router = () => {
@@ -32,6 +33,10 @@ const Router = () => {
 
   if (currentPage === 'market') {
     return <MarketPage onNavigate={handleNavigate} />;
+  }
+
+  if (currentPage === 'diaries') {
+    return <DanfoDiariesPage onNavigate={handleNavigate} />;
   }
 
   return <App
