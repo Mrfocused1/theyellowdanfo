@@ -700,20 +700,21 @@ const App = ({ onNavigate }) => {
       {/* --- CONTACT "CONDUCTOR'S MANIFEST" OVERLAY --- */}
       <div
         ref={contactContainerRef}
-        className={`fixed inset-0 z-[75] bg-black/90 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] flex items-center justify-center p-4 ${contactOpen ? 'translate-y-0' : '-translate-y-full'}`}
+        className={`fixed inset-0 z-[75] bg-black/90 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] overflow-y-auto ${contactOpen ? 'translate-y-0' : '-translate-y-full'}`}
       >
-        {/* Danfo Panel Background */}
-        <div className="danfo-panel relative w-full max-w-4xl bg-yellow-400 p-2 md:p-4 rounded-xl shadow-2xl overflow-hidden border-8 border-black">
+        <div className="min-h-full flex items-center justify-center p-4 py-8">
+          {/* Danfo Panel Background */}
+          <div className="danfo-panel relative w-full max-w-4xl bg-yellow-400 p-2 md:p-4 rounded-xl shadow-2xl overflow-hidden border-8 border-black">
 
-          {/* Decor: Black Stripes */}
-          <div className="absolute top-12 left-0 right-0 h-12 bg-black"></div>
-          <div className="absolute bottom-12 left-0 right-0 h-12 bg-black"></div>
+            {/* Decor: Black Stripes - hidden on mobile */}
+            <div className="hidden md:block absolute top-12 left-0 right-0 h-12 bg-black"></div>
+            <div className="hidden md:block absolute bottom-12 left-0 right-0 h-12 bg-black"></div>
 
-          {/* Inner Content Area */}
-          <div className="relative z-10 grid md:grid-cols-12 gap-8 p-4 md:p-8">
+            {/* Inner Content Area */}
+            <div className="relative z-10 flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-8 p-4 md:p-8">
 
-            {/* Left Info Panel */}
-            <div className="md:col-span-4 flex flex-col justify-between text-black bg-white/20 p-6 backdrop-blur-sm border-2 border-black rounded shadow-lg transform -rotate-1">
+              {/* Left Info Panel */}
+              <div className="md:col-span-4 flex flex-col text-black bg-white/20 p-4 md:p-6 backdrop-blur-sm border-2 border-black rounded shadow-lg md:transform md:-rotate-1">
               <div>
                 <h2 className="font-display text-4xl mb-2 leading-none">LAGOS <br /> DISPATCH</h2>
                 <div className="h-1 w-20 bg-black mb-4"></div>
@@ -724,7 +725,7 @@ const App = ({ onNavigate }) => {
                   <p className="flex items-center gap-2"><Mail size={16} /> hello@yellowdanfo.com</p>
                 </div>
               </div>
-              <div className="mt-8 border-t-2 border-black pt-4 text-xs font-bold">
+              <div className="mt-4 md:mt-8 border-t-2 border-black pt-4 text-xs font-bold">
                 <p>DRIVER ID: #LAD-505</p>
                 <p>STATUS: ON DUTY</p>
               </div>
@@ -733,7 +734,7 @@ const App = ({ onNavigate }) => {
             {/* Right: The Manifest (Form) */}
             <div className="md:col-span-8 relative">
               {/* Paper Effect */}
-              <div className="bg-stone-100 p-8 shadow-2xl relative manifest-paper transform rotate-1 border border-stone-300">
+              <div className="bg-stone-100 p-4 md:p-8 shadow-2xl relative manifest-paper md:transform md:rotate-1 border border-stone-300">
 
                 {/* Tapes */}
                 <div className="tape-corner -top-3 -left-3"></div>
@@ -782,6 +783,7 @@ const App = ({ onNavigate }) => {
             </div>
 
           </div>
+        </div>
         </div>
       </div>
 
