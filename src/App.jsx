@@ -381,9 +381,12 @@ const App = ({ onNavigate }) => {
         <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
           {/* Road */}
           <div className="absolute inset-0 flex justify-center">
-            <div className="w-64 h-full bg-black relative">
+            <div className="w-[400px] md:w-[500px] h-full bg-neutral-800 relative">
               {/* White road lines */}
-              <div className="loading-road-lines absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-2"></div>
+              <div className="loading-road-lines absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-3"></div>
+              {/* Road edges */}
+              <div className="absolute top-0 bottom-0 left-0 w-2 bg-white"></div>
+              <div className="absolute top-0 bottom-0 right-0 w-2 bg-white"></div>
             </div>
           </div>
 
@@ -396,9 +399,9 @@ const App = ({ onNavigate }) => {
             />
           </div>
 
-          <h1 className="mt-8 text-4xl font-black tracking-tighter uppercase text-black relative z-10">Boarding...</h1>
-          <div className="mt-4 w-48 h-4 bg-black border-2 border-black p-1 relative z-10">
-            <div className="h-full bg-white animate-pulse w-full"></div>
+          <h1 className="mt-8 text-4xl font-black tracking-tighter uppercase text-white relative z-10 drop-shadow-lg">Boarding...</h1>
+          <div className="mt-4 w-48 h-5 bg-yellow-400 border-4 border-white rounded-sm p-1 relative z-10 shadow-lg">
+            <div className="h-full bg-white animate-pulse w-full rounded-sm"></div>
           </div>
         </div>
       )}
