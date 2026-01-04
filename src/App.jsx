@@ -339,20 +339,16 @@ const App = ({ onNavigate }) => {
         .loading-fadeout {
           animation: fadeOut 1s ease-out 3s forwards;
         }
-        @keyframes busGlide {
-          0%, 100% { transform: translateX(-8px) rotate(-1deg); }
-          50% { transform: translateX(8px) rotate(1deg); }
-        }
         @keyframes busApproach {
-          0% { transform: scale(0.6); }
-          100% { transform: scale(1.2); }
+          0% { transform: scale(0.5); }
+          100% { transform: scale(1.1); }
         }
         @keyframes roadLinesApproach {
           from { background-position: 0 0; }
           to { background-position: 0 -80px; }
         }
         .loading-bus {
-          animation: busGlide 0.8s ease-in-out infinite, busApproach 3s ease-out forwards;
+          animation: busApproach 3s ease-out forwards;
         }
         .loading-road-lines {
           background-image: linear-gradient(to bottom, white 50%, transparent 50%);
