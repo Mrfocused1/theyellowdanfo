@@ -1076,26 +1076,8 @@ const App = ({ onNavigate }) => {
           </div>
         </section>
 
-        {/* STOP 07: IMPACT */}
-        <section id="stop-7" className="py-32 border-y border-yellow-400 bg-black">
-          <div className="container mx-auto px-6 flex flex-col items-center">
-            <h2 className="font-display text-yellow-400 text-4xl mb-12 uppercase tracking-widest border-b border-yellow-400 pb-2">Dashboard Metrics</h2>
-            <div className="w-full max-w-4xl grid md:grid-cols-3 gap-12">
-              {[
-                { label: "IMPACT", val: "92%" },
-                { label: "FUNDING", val: "£50M+" },
-                { label: "REACH", val: "Global" }
-              ].map((meter, i) => (
-                <div key={i} className="text-center">
-                  <div className="h-40 w-40 rounded-full border-8 border-neutral-800 border-t-yellow-400 border-r-yellow-400 mx-auto mb-4 rotate-45 flex items-center justify-center bg-neutral-900 shadow-[0_0_20px_rgba(251,191,36,0.2)]">
-                    <div className="-rotate-45 font-mono-style text-2xl font-bold text-white">{meter.val}</div>
-                  </div>
-                  <h3 className="font-display text-xl text-stone-400">{meter.label}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* STOP 07: Placeholder for scroll continuity */}
+        <section id="stop-7" className="hidden"></section>
 
         {/* STOP 08: PROGRAMMES (FROM ORIGINAL) */}
         <section id="stop-8" className="py-12 bg-yellow-400 border-t-4 border-b-4 border-black overflow-hidden">
