@@ -37,8 +37,8 @@ const DanfoBus = ({ view = 'front', className, style }) => {
 };
 
 
-const App = ({ onNavigate }) => {
-  const [loading, setLoading] = useState(true); // Initial bouncing bus animation
+const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadComplete }) => {
+  const [loading, setLoading] = useState(!skipLoading); // Only show loading on initial site visit
   const [isLoaded, setIsLoaded] = useState(true); // Skip preloader, go straight to main
   const [cartCount, setCartCount] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
@@ -47,6 +47,16 @@ const App = ({ onNavigate }) => {
   const [contactOpen, setContactOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
   const [formStatus, setFormStatus] = useState("IDLE"); // IDLE, SENDING, SENT
+
+  // Handle initial overlay from navigation
+  useEffect(() => {
+    if (initialOverlay) {
+      if (initialOverlay === 'contact') setContactOpen(true);
+      else if (initialOverlay === 'whatwedo') setMissionOpen(true);
+      else if (initialOverlay === 'programmes') setWorkshopOpen(true);
+      if (onOverlayOpened) onOverlayOpened();
+    }
+  }, [initialOverlay, onOverlayOpened]);
   const [currentStop, setCurrentStop] = useState("BOARDING");
   const [lastTicket, setLastTicket] = useState(null);
   const [gsapLoaded, setGsapLoaded] = useState(false);
@@ -108,9 +118,17 @@ const App = ({ onNavigate }) => {
 
   // Initial Loading Animation Timer (4 seconds total)
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 4000);
+    if (skipLoading) {
+      // Already loaded, notify parent immediately
+      if (onLoadComplete) onLoadComplete();
+      return;
+    }
+    const timer = setTimeout(() => {
+      setLoading(false);
+      if (onLoadComplete) onLoadComplete();
+    }, 4000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [skipLoading, onLoadComplete]);
 
   // --- ANIMATION LOGIC ---
   useLayoutEffect(() => {

@@ -127,11 +127,11 @@ const MarketPage = ({ onNavigate }) => {
                                 if (item === 'Home' && onNavigate) {
                                     onNavigate('home');
                                 } else if (item === 'What We Do' && onNavigate) {
-                                    onNavigate('home');
+                                    onNavigate('home:whatwedo');
                                 } else if (item === 'Contact' && onNavigate) {
-                                    onNavigate('home');
+                                    onNavigate('home:contact');
                                 } else if (item === 'Programmes' && onNavigate) {
-                                    onNavigate('home');
+                                    onNavigate('home:programmes');
                                 }
                                 setMenuOpen(false);
                             }}

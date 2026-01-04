@@ -342,9 +342,9 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                             onClick={() => {
                                 if (item === 'Home' && onNavigate) onNavigate('home');
                                 else if (item === 'Market' && onNavigate) onNavigate('market');
-                                else if (item === 'What We Do' && onNavigate) onNavigate('home');
-                                else if (item === 'Contact' && onNavigate) onNavigate('home');
-                                else if (item === 'Programmes' && onNavigate) onNavigate('home');
+                                else if (item === 'What We Do' && onNavigate) onNavigate('home:whatwedo');
+                                else if (item === 'Contact' && onNavigate) onNavigate('home:contact');
+                                else if (item === 'Programmes' && onNavigate) onNavigate('home:programmes');
                                 setMenuOpen(false);
                             }}
                             className="hover:text-white cursor-pointer border-b border-gray-800 pb-2 flex items-center gap-4 transition-colors"
