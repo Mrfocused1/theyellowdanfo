@@ -635,7 +635,7 @@ const App = ({ onNavigate }) => {
       </div>
 
       {/* --- MISSION OVERLAY --- */}
-      <div ref={missionContainerRef} className={`fixed inset-0 z-[70] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${missionOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div ref={missionContainerRef} className={`fixed inset-0 z-[70] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${missionOpen ? 'translate-y-0' : 'translate-y-full pointer-events-none'}`}>
         <div className="mission-scroller h-full overflow-y-auto overflow-x-hidden bg-zinc-900">
           <div className="mission-track h-[4000vh] relative">
             <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
@@ -701,7 +701,7 @@ const App = ({ onNavigate }) => {
       </div>
 
       {/* --- WORKSHOPS OVERLAY (THE ACADEMY) --- */}
-      <div className={`fixed inset-0 z-[72] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] overflow-y-auto ${workshopOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className={`fixed inset-0 z-[72] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] overflow-y-auto ${workshopOpen ? 'translate-y-0' : 'translate-y-full pointer-events-none'}`}>
         <div className="min-h-full pt-8 pb-20">
           <div className="container mx-auto px-6 max-w-6xl">
 
@@ -811,7 +811,7 @@ const App = ({ onNavigate }) => {
       {/* --- CONTACT "CONDUCTOR'S MANIFEST" OVERLAY --- */}
       <div
         ref={contactContainerRef}
-        className={`fixed inset-0 z-[75] bg-black/90 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] overflow-y-auto ${contactOpen ? 'translate-y-0' : '-translate-y-full'}`}
+        className={`fixed inset-0 z-[75] bg-black/90 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] overflow-y-auto ${contactOpen ? 'translate-y-0' : '-translate-y-full pointer-events-none'}`}
       >
         <div className="min-h-full flex items-center justify-center p-4 py-8">
           {/* Danfo Panel Background */}
