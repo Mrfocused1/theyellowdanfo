@@ -1119,7 +1119,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
       <div ref={containerRef} className={`stop-content relative z-10 pt-32 pb-24 md:pl-20 md:pr-4 ${isLoaded ? 'block' : 'hidden'}`}>
 
         {/* STOP 01: DEPOT */}
-        <section id="stop-1" className="min-h-screen flex items-center justify-center relative py-20">
+        <section id="stop-1" className="min-h-[70vh] md:min-h-[80vh] flex items-center justify-center relative py-10 md:py-20">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="parallax-bg-1 absolute top-0 right-0 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl"></div>
           </div>
@@ -1151,7 +1151,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
         </section>
 
         {/* STOP 03: ORIGIN */}
-        <section id="stop-3" className="min-h-[80vh] flex items-center justify-center relative py-20">
+        <section id="stop-3" className="min-h-[60vh] md:min-h-[70vh] flex items-center justify-center relative py-10 md:py-16">
           <div className="container mx-auto px-6 text-center max-w-4xl">
             <div className="parallax-bg-3 inline-block">
               <div className="bus-stripe h-4 w-full mb-8"></div>
