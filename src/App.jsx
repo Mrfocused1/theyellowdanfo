@@ -491,9 +491,14 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
 
         {/* TOP: Destination Board */}
         <div className="absolute top-0 left-0 right-0 h-24 md:h-32 bg-neutral-900 border-b-8 border-yellow-400 flex items-center justify-between px-4 md:px-8 shadow-2xl">
-          {/* Mobile Menu Trigger */}
-          <div className="md:hidden pointer-events-auto">
-            <Menu className="text-yellow-400" size={28} />
+          {/* Logo */}
+          <div className="pointer-events-auto flex items-center gap-2">
+            <img
+              src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
+              alt="The Yellow Danfo"
+              className="h-12 md:h-16 w-auto cursor-pointer"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            />
           </div>
 
           {/* Destination Roller */}
@@ -628,7 +633,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
       <div className={`fixed inset-y-0 left-0 w-full md:w-96 bg-black text-yellow-400 z-[60] transform transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'} p-8 border-r-8 border-yellow-400 flex flex-col justify-center`}>
         <button onClick={() => setMenuOpen(false)} className="absolute top-8 right-8 text-white"><X size={32} /></button>
         <ul className="space-y-6 text-3xl font-black uppercase tracking-tighter">
-          {['Home', 'What We Do', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
+          {['Home', 'What We Do', 'The Book', 'Programmes', 'Danfo Diaries', 'Market', 'Contact'].map((item, i) => (
             <li
               key={i}
               onClick={() => {
@@ -636,6 +641,8 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                   setMissionOpen(true);
                 } else if (item === 'Market' && onNavigate) {
                   onNavigate('market');
+                } else if (item === 'Danfo Diaries' && onNavigate) {
+                  onNavigate('diaries');
                 } else if (item === 'Contact') {
                   setContactOpen(true);
                 } else if (item === 'Programmes') {

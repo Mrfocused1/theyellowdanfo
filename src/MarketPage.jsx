@@ -111,12 +111,20 @@ const MarketPage = ({ onNavigate }) => {
             <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b-8 border-yellow-400 px-4 md:px-8 py-4 shadow-2xl">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
+                        {/* Logo */}
+                        <img
+                            src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
+                            alt="The Yellow Danfo"
+                            className="h-10 md:h-14 w-auto cursor-pointer"
+                            onClick={() => onNavigate && onNavigate('home')}
+                        />
+
                         {/* Mobile Menu Button */}
                         <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden bg-yellow-400 border-2 border-black p-2 shadow-[4px_4px_0px_#000] hover:translate-y-1 transition-transform">
                             {menuOpen ? <X className="text-black" size={24} /> : <Menu className="text-black" size={24} />}
                         </button>
 
-                        <h1 className="font-display text-2xl md:text-4xl text-yellow-400 tracking-wider">MARKET TERMINUS</h1>
+                        <h1 className="hidden md:block font-display text-2xl md:text-4xl text-yellow-400 tracking-wider">MARKET TERMINUS</h1>
                         <div className="hidden md:block bg-yellow-400 text-black px-2 py-1 font-mono-style text-xs font-bold">OFFICIAL STORE</div>
                     </div>
 
@@ -146,7 +154,7 @@ const MarketPage = ({ onNavigate }) => {
             < div className={`fixed inset-y-0 left-0 w-full md:w-96 bg-black text-yellow-400 z-[80] transform transition-transform duration-500 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'} p-8 border-r-8 border-yellow-400 flex flex-col justify-center`}>
                 <button onClick={() => setMenuOpen(false)} className="absolute top-8 right-8 text-white"><X size={32} /></button>
                 <ul className="space-y-6 text-3xl font-black uppercase tracking-tighter">
-                    {['Home', 'What We Do', 'The Book', 'Programmes', 'Market', 'Contact'].map((item, i) => (
+                    {['Home', 'What We Do', 'The Book', 'Programmes', 'Danfo Diaries', 'Market', 'Contact'].map((item, i) => (
                         <li
                             key={i}
                             onClick={() => {
@@ -160,6 +168,8 @@ const MarketPage = ({ onNavigate }) => {
                                     onNavigate('home:programmes');
                                 } else if (item === 'The Book' && onNavigate) {
                                     onNavigate('home:book');
+                                } else if (item === 'Danfo Diaries' && onNavigate) {
+                                    onNavigate('diaries');
                                 }
                                 setMenuOpen(false);
                             }}
@@ -292,11 +302,29 @@ const MarketPage = ({ onNavigate }) => {
             </main >
 
             {/* --- FOOTER --- */}
-            < footer className="border-t border-yellow-400 py-8 text-center" >
-                <p className="font-mono-style text-xs text-stone-600">
-                    © 2024 THE YELLOW DANFO. LAGOS, NIGERIA.
-                </p>
-            </footer >
+            <footer className="border-t-4 border-yellow-400 py-12 bg-neutral-900">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div className="flex items-center gap-4">
+                            <img
+                                src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
+                                alt="The Yellow Danfo"
+                                className="h-10 w-auto opacity-70"
+                            />
+                            <div className="h-8 w-px bg-stone-700"></div>
+                            <p className="font-mono-style text-xs text-stone-500">
+                                LAGOS • LONDON
+                            </p>
+                        </div>
+                        <div className="text-center md:text-right">
+                            <p className="font-mono-style text-xs text-stone-600">
+                                © 2024 THE YELLOW DANFO. LAGOS.<br />
+                                BUILT FOR FUNMI AKISANYA.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div >
     );
 };

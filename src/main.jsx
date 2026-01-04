@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import MarketPage from './MarketPage.jsx'
+import DanfoDiariesPage from './DanfoDiariesPage.jsx'
 
 // Simple Router Component
 const Router = () => {
@@ -11,6 +12,9 @@ const Router = () => {
   const [hasLoaded, setHasLoaded] = useState(false); // Track if site has done initial load
 
   const handleNavigate = (destination) => {
+    // Scroll to top when navigating to a new page
+    window.scrollTo(0, 0);
+
     // Check if destination includes an overlay (e.g., 'home:contact')
     if (destination.includes(':')) {
       const [page, overlay] = destination.split(':');
@@ -29,6 +33,10 @@ const Router = () => {
 
   if (currentPage === 'market') {
     return <MarketPage onNavigate={handleNavigate} />;
+  }
+
+  if (currentPage === 'diaries') {
+    return <DanfoDiariesPage onNavigate={handleNavigate} />;
   }
 
   return <App
