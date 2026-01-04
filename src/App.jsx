@@ -689,7 +689,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
       {/* --- MISSION OVERLAY --- */}
       <div ref={missionContainerRef} className={`fixed inset-0 z-[70] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${missionOpen ? 'translate-y-0' : 'translate-y-full pointer-events-none'}`}>
         <div className="mission-scroller h-full overflow-y-auto overflow-x-hidden bg-zinc-900">
-          <div className="mission-track h-[4000vh] relative">
+          <div className="mission-track h-[2000vh] md:h-[4000vh] relative">
             <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
               <div className="absolute top-8 right-8 z-50">
                 <button onClick={() => setMissionOpen(false)} className="text-stone-500 hover:text-yellow-400 font-display text-xl underline decoration-yellow-400">CLOSE</button>
