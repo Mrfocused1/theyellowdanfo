@@ -450,7 +450,7 @@ const App = ({ onNavigate }) => {
               key={i}
               onClick={() => {
                 if (item === 'About' && onNavigate) {
-                  onNavigate('about');
+                  onNavigate('mission');
                 } else if (item === 'Market' && onNavigate) {
                   onNavigate('market');
                 }

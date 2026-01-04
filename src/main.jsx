@@ -17,6 +17,10 @@ const Router = () => {
     return <AboutPage onNavigate={setCurrentPage} />;
   }
 
+  if (currentPage === 'mission') {
+    return <AboutPage onNavigate={setCurrentPage} autoOpenMission={true} />;
+  }
+
   return <App onNavigate={setCurrentPage} />;
 };
 
