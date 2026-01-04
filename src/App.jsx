@@ -1196,8 +1196,8 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
           </div>
         </section>
 
-        {/* STOP 05: INSIDE THE STORY (FROM ORIGINAL) */}
-        <section id="stop-5" className="py-32 relative overflow-hidden bg-gray-900">
+        {/* STOP 05: INSIDE THE STORY (FROM ORIGINAL) - Hidden on mobile */}
+        <section id="stop-5" className="hidden md:block py-32 relative overflow-hidden bg-gray-900">
           <div className="container mx-auto px-4 relative z-10 text-center text-white">
             <div className="mb-8 border-l-8 border-yellow-400 pl-6 relative inline-block text-left">
               <div className="absolute -left-[30px] top-0 bg-yellow-400 border-2 border-black w-10 h-10 flex items-center justify-center font-bold text-sm shadow-[2px_2px_0px_#000] text-black">
