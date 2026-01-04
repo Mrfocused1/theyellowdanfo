@@ -359,6 +359,14 @@ const App = ({ onNavigate }) => {
           background-size: 4px 80px;
           animation: roadLinesApproach 0.2s linear infinite;
         }
+        .perspective-road {
+          perspective: 400px;
+          perspective-origin: 50% 30%;
+        }
+        .road-surface {
+          transform: rotateX(60deg);
+          transform-origin: bottom center;
+        }
         .mission-bus-shadow { filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.5)); }
         .dashed-road {
           background-image: linear-gradient(to bottom, #444 50%, transparent 50%);
@@ -378,20 +386,23 @@ const App = ({ onNavigate }) => {
 
       {/* --- INITIAL LOADING ANIMATION (DRIVING BUS) --- */}
       {loading && (
-        <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
-          {/* Road */}
-          <div className="absolute inset-0 flex justify-center">
-            <div className="w-[400px] md:w-[500px] h-full bg-neutral-800 relative">
-              {/* White road lines */}
+        <div className="fixed inset-0 z-[100] bg-gradient-to-b from-sky-400 via-sky-300 to-sky-200 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
+          {/* Perspective Road */}
+          <div className="absolute inset-0 perspective-road">
+            <div className="absolute bottom-0 left-0 right-0 h-[70%] road-surface bg-neutral-700">
+              {/* Road center line */}
               <div className="loading-road-lines absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-3"></div>
-              {/* Road edges */}
-              <div className="absolute top-0 bottom-0 left-0 w-2 bg-white"></div>
-              <div className="absolute top-0 bottom-0 right-0 w-2 bg-white"></div>
+              {/* Road edge lines */}
+              <div className="absolute top-0 bottom-0 left-[15%] w-2 bg-white"></div>
+              <div className="absolute top-0 bottom-0 right-[15%] w-2 bg-white"></div>
             </div>
           </div>
 
+          {/* Horizon line */}
+          <div className="absolute top-[30%] left-0 right-0 h-px bg-neutral-400"></div>
+
           {/* Bus driving towards viewer */}
-          <div className="relative z-10">
+          <div className="relative z-10 mt-16">
             <img
               src="https://i.postimg.cc/3xdgQ0wH/danfo-2.png"
               alt="Yellow Danfo Bus"
@@ -399,9 +410,9 @@ const App = ({ onNavigate }) => {
             />
           </div>
 
-          <h1 className="mt-8 text-4xl font-black tracking-tighter uppercase text-white relative z-10 drop-shadow-lg">Boarding...</h1>
-          <div className="mt-4 w-48 h-5 bg-yellow-400 border-4 border-white rounded-sm p-1 relative z-10 shadow-lg">
-            <div className="h-full bg-white animate-pulse w-full rounded-sm"></div>
+          <h1 className="mt-8 text-4xl font-black tracking-tighter uppercase text-black relative z-10 drop-shadow-lg">Boarding...</h1>
+          <div className="mt-4 w-48 h-5 bg-white border-4 border-black rounded-sm p-1 relative z-10 shadow-lg">
+            <div className="h-full bg-yellow-400 animate-pulse w-full rounded-sm"></div>
           </div>
         </div>
       )}
