@@ -356,12 +356,12 @@ const App = ({ onNavigate }) => {
           animation: roadLinesApproach 0.2s linear infinite;
         }
         .perspective-road {
-          perspective: 400px;
-          perspective-origin: 50% 30%;
+          perspective: 500px;
+          perspective-origin: 50% 40%;
         }
         .road-surface {
-          transform: rotateX(60deg);
-          transform-origin: bottom center;
+          transform: rotateX(75deg);
+          transform-origin: 50% 100%;
         }
         .mission-bus-shadow { filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.5)); }
         .dashed-road {
@@ -384,13 +384,13 @@ const App = ({ onNavigate }) => {
       {loading && (
         <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
           {/* Perspective Road */}
-          <div className="absolute inset-0 perspective-road">
-            <div className="absolute bottom-0 left-0 right-0 h-[70%] road-surface bg-neutral-700">
+          <div className="absolute inset-0 perspective-road overflow-hidden">
+            <div className="absolute bottom-0 left-0 right-0 h-[200%] road-surface bg-neutral-700">
               {/* Road center line */}
               <div className="loading-road-lines absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-3"></div>
               {/* Road edge lines */}
-              <div className="absolute top-0 bottom-0 left-[15%] w-2 bg-white"></div>
-              <div className="absolute top-0 bottom-0 right-[15%] w-2 bg-white"></div>
+              <div className="absolute top-0 bottom-0 left-[20%] w-2 bg-white"></div>
+              <div className="absolute top-0 bottom-0 right-[20%] w-2 bg-white"></div>
             </div>
           </div>
 
