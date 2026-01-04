@@ -431,6 +431,28 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
         .dashed-road-line {
           animation: roadScroll 0.3s linear infinite;
         }
+        /* Mobile story window auto-animation */
+        @keyframes storyReveal {
+          0%, 20% { transform: translateY(100%); }
+          30%, 70% { transform: translateY(0); }
+          80%, 100% { transform: translateY(100%); }
+        }
+        @media (max-width: 768px) {
+          .story-window-text {
+            animation: storyReveal 6s ease-in-out infinite;
+          }
+          .story-window-text.delay-1 { animation-delay: 0s; }
+          .story-window-text.delay-2 { animation-delay: 2s; }
+          .story-window-text.delay-3 { animation-delay: 4s; }
+        }
+        /* Collaborators auto-scroll on mobile */
+        @keyframes scrollLeft {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .collaborators-scroll {
+          animation: scrollLeft 15s linear infinite;
+        }
         /* Manifest Styles */
         .manifest-paper {
           background-image: linear-gradient(#e5e5e5 1px, transparent 1px);
@@ -1185,21 +1207,25 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
 
             <div className="relative max-w-4xl mx-auto mt-12">
               <div className="grid md:grid-cols-3 gap-4">
-                {[1, 2, 3].map((win) => (
-                  <div key={win} className="h-64 bg-gray-800 rounded-lg border-4 border-black overflow-hidden relative group">
+                {[
+                  "The engine coughed, a guttural sound that vibrated through the soles of my feet...",
+                  "Yellow paint peeling like memories, each scratch a story of Lagos streets...",
+                  "The conductor's call echoed — 'Oshodi! Oshodi!' — a rhythm as old as the city itself..."
+                ].map((quote, i) => (
+                  <div key={i} className="h-64 bg-gray-800 rounded-lg border-4 border-black overflow-hidden relative group">
                     <div className="absolute top-0 w-full h-8 bg-black/50 z-20"></div>
                     <div className="absolute inset-0 bg-yellow-400 flex items-center justify-center overflow-hidden">
                       <div className="text-[10rem] font-black opacity-10 select-none whitespace-nowrap animate-marquee text-black">
                         LAGOS NEVER SLEEPS
                       </div>
-                      <p className="absolute p-6 text-black font-serif font-bold text-lg z-10 bg-white/90 m-4 shadow-lg transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        "The engine coughed, a guttural sound that vibrated through the soles of my feet..."
+                      <p className={`story-window-text delay-${i + 1} absolute p-6 text-black font-serif font-bold text-lg z-10 bg-white/90 m-4 shadow-lg transform translate-y-full md:group-hover:translate-y-0 transition-transform duration-300`}>
+                        "{quote}"
                       </p>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-8 text-gray-400 font-mono">Hover windows to read</div>
+              <div className="mt-8 text-gray-400 font-mono hidden md:block">Hover windows to read</div>
             </div>
           </div>
         </section>
@@ -1289,7 +1315,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
         </section>
 
         {/* STOP 09: COLLABORATORS (FROM ORIGINAL) */}
-        <section id="stop-9" className="py-24 bg-white">
+        <section id="stop-9" className="py-24 bg-white overflow-hidden">
           <div className="container mx-auto px-4 text-center">
             <div className="mb-8 border-l-8 border-black pl-6 relative inline-block text-left">
               <div className="absolute -left-[30px] top-0 bg-yellow-400 border-2 border-black w-10 h-10 flex items-center justify-center font-bold text-sm shadow-[2px_2px_0px_#000]">
@@ -1300,12 +1326,23 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                 Collaborators
               </h2>
             </div>
-            <div className="flex flex-wrap justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 mt-12">
+            {/* Desktop: Flex wrap centered */}
+            <div className="hidden md:flex flex-wrap justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 mt-12">
               {['British Council', 'Lagos State', 'Arts Guild', 'Tech Next'].map((brand, i) => (
                 <div key={i} className="text-2xl font-black uppercase border-2 border-black p-4 rotate-[-2deg] hover:rotate-0 hover:bg-yellow-400 transition-all text-black">
                   {brand}
                 </div>
               ))}
+            </div>
+            {/* Mobile: Auto-scrolling horizontal loop */}
+            <div className="md:hidden mt-12 overflow-hidden">
+              <div className="collaborators-scroll flex gap-6 w-max">
+                {[...['British Council', 'Lagos State', 'Arts Guild', 'Tech Next'], ...['British Council', 'Lagos State', 'Arts Guild', 'Tech Next']].map((brand, i) => (
+                  <div key={i} className="text-lg font-black uppercase border-2 border-black p-3 bg-yellow-400 text-black whitespace-nowrap flex-shrink-0">
+                    {brand}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
