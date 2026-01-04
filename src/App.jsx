@@ -569,15 +569,11 @@ const App = ({ onNavigate }) => {
               </div>
 
               <div className="mission-bus absolute top-[-20vh] z-30 transform -translate-x-1/2">
-                <div className="w-32 h-64 bg-yellow-400 border-4 border-black rounded-lg shadow-2xl relative flex flex-col items-center justify-between p-4 mission-bus-shadow">
-                  <div className="w-full h-8 bg-black/10 rounded-sm"></div>
-                  <div className="font-display text-black text-2xl rotate-180 mb-8 writing-mode-vertical">LAD-505</div>
-                  <div className="w-full h-16 bg-blue-900/40 border-2 border-black/50 rounded-sm backdrop-blur-sm"></div>
-                  <div className="w-full flex justify-between mt-2">
-                    <div className="w-6 h-6 bg-white rounded-full border-2 border-gray-400 shadow-[0_0_10px_white]"></div>
-                    <div className="w-6 h-6 bg-white rounded-full border-2 border-gray-400 shadow-[0_0_10px_white]"></div>
-                  </div>
-                </div>
+                <img
+                  src="https://i.postimg.cc/4xZ5Cx9x/danfo-top-down.png"
+                  alt="Yellow Danfo Bus"
+                  className="w-32 h-auto mission-bus-shadow"
+                />
               </div>
 
               <div className="mission-card-1 absolute left-4 md:left-[10%] lg:left-[20%] max-w-md p-8 bg-stone-100 text-black shadow-[10px_10px_0px_rgba(251,191,36,1)] border-l-8 border-black z-40 opacity-0">
@@ -599,10 +595,6 @@ const App = ({ onNavigate }) => {
               </div>
 
               <div className="mission-footer absolute bottom-20 left-1/2 -translate-x-1/2 text-center z-40 opacity-0">
-                <div className="mb-4">
-                  <div className="w-4 h-4 bg-red-600 rounded-full mx-auto mb-2 animate-pulse"></div>
-                  <div className="font-mono-style text-red-600 text-xs tracking-widest">TERMINUS</div>
-                </div>
                 <h2 className="font-display text-4xl md:text-6xl text-white mb-4">END OF <span className="text-yellow-400">ROUTE</span></h2>
                 <p className="font-mono-style text-stone-400 mb-6">Thank you for riding with us</p>
                 <button
