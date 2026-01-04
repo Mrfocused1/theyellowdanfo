@@ -226,7 +226,7 @@ const App = ({ onNavigate }) => {
       });
 
       tl.addLabel("start");
-      tl.to(".dashed-road-line", { backgroundPosition: "0 10000px", ease: "none", duration: 28 }, 0);
+      // Road lines now use CSS infinite animation, no GSAP needed
       tl.to(".mission-bus", { y: "25vh", x: 20, rotation: 1, duration: 2, ease: "power1.inOut" }, 0)
         .fromTo(".mission-card-1",
           { opacity: 0, x: -100, rotate: -5 },
@@ -242,7 +242,7 @@ const App = ({ onNavigate }) => {
           "-=2"
         );
       tl.addLabel("bridges");
-      tl.to(".mission-bus", { y: "85vh", x: 0, rotation: 0, duration: 3.5, ease: "power1.inOut" })
+      tl.to(".mission-bus", { y: "85vh", x: 60, rotation: 2, duration: 12, ease: "power1.inOut" })
         .to(".mission-card-2", { opacity: 0, y: -100, scale: 0.9, duration: 1 }, "<")
         .fromTo(".mission-card-3",
           { opacity: 0, x: -100, rotate: -5 },
@@ -251,7 +251,7 @@ const App = ({ onNavigate }) => {
         )
         .to(".mission-bus", { scale: 1.05, duration: 0.5, yoyo: true, repeat: 1 }, ">");
       tl.addLabel("change");
-      tl.to(".mission-bus", { y: "120vh", x: 0, rotation: 0, duration: 5, ease: "power1.inOut" })
+      tl.to(".mission-bus", { y: "120vh", x: 60, rotation: 0, duration: 5, ease: "power1.inOut" })
         .to(".mission-card-3", { opacity: 0, y: -100, scale: 0.9, duration: 1 }, "<")
         .fromTo(".mission-footer",
           { opacity: 0, y: 50 },
@@ -343,6 +343,13 @@ const App = ({ onNavigate }) => {
         .dashed-road {
           background-image: linear-gradient(to bottom, #444 50%, transparent 50%);
           background-size: 2px 60px;
+        }
+        @keyframes roadScroll {
+          from { background-position: 0 0; }
+          to { background-position: 0 60px; }
+        }
+        .dashed-road-line {
+          animation: roadScroll 0.3s linear infinite;
         }
       `}</style>
 
@@ -546,7 +553,7 @@ const App = ({ onNavigate }) => {
       {/* --- MISSION OVERLAY --- */}
       <div ref={missionContainerRef} className={`fixed inset-0 z-[70] bg-stone-900 transition-transform duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${missionOpen ? 'translate-y-0' : 'translate-y-full'}`}>
         <div className="mission-scroller h-full overflow-y-auto overflow-x-hidden bg-zinc-900">
-          <div className="mission-track h-[3000vh] relative">
+          <div className="mission-track h-[4000vh] relative">
             <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
               <div className="absolute top-8 right-8 z-50">
                 <button onClick={() => setMissionOpen(false)} className="text-stone-500 hover:text-yellow-400 font-display text-xl underline decoration-yellow-400">CLOSE</button>
