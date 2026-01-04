@@ -359,7 +359,11 @@ const App = ({ onNavigate }) => {
       {/* --- INITIAL LOADING ANIMATION (BOUNCING BUS) --- */}
       {loading && (
         <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout">
-          <DanfoBus view="front" className="w-64 h-64 animate-bounce" />
+          <img
+            src="https://i.postimg.cc/3xdgQ0wH/danfo-2.png"
+            alt="Yellow Danfo Bus"
+            className="w-64 h-64 object-contain animate-bounce"
+          />
           <h1 className="mt-8 text-4xl font-black tracking-tighter uppercase text-black">Boarding...</h1>
           <div className="mt-4 w-48 h-4 bg-black border-2 border-black p-1">
             <div className="h-full bg-white animate-pulse w-full"></div>
