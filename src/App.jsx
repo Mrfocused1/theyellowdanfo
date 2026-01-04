@@ -339,6 +339,26 @@ const App = ({ onNavigate }) => {
         .loading-fadeout {
           animation: fadeOut 1s ease-out 3s forwards;
         }
+        @keyframes busGlide {
+          0%, 100% { transform: translateX(-8px) rotate(-1deg); }
+          50% { transform: translateX(8px) rotate(1deg); }
+        }
+        @keyframes busApproach {
+          0% { transform: scale(0.6); }
+          100% { transform: scale(1.2); }
+        }
+        @keyframes roadLinesApproach {
+          from { background-position: 0 0; }
+          to { background-position: 0 -80px; }
+        }
+        .loading-bus {
+          animation: busGlide 0.8s ease-in-out infinite, busApproach 3s ease-out forwards;
+        }
+        .loading-road-lines {
+          background-image: linear-gradient(to bottom, white 50%, transparent 50%);
+          background-size: 4px 80px;
+          animation: roadLinesApproach 0.2s linear infinite;
+        }
         .mission-bus-shadow { filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.5)); }
         .dashed-road {
           background-image: linear-gradient(to bottom, #444 50%, transparent 50%);
@@ -356,16 +376,28 @@ const App = ({ onNavigate }) => {
       {/* NOISE OVERLAY */}
       <div className="texture-noise"></div>
 
-      {/* --- INITIAL LOADING ANIMATION (BOUNCING BUS) --- */}
+      {/* --- INITIAL LOADING ANIMATION (DRIVING BUS) --- */}
       {loading && (
-        <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout">
-          <img
-            src="https://i.postimg.cc/3xdgQ0wH/danfo-2.png"
-            alt="Yellow Danfo Bus"
-            className="w-64 h-64 object-contain animate-bounce"
-          />
-          <h1 className="mt-8 text-4xl font-black tracking-tighter uppercase text-black">Boarding...</h1>
-          <div className="mt-4 w-48 h-4 bg-black border-2 border-black p-1">
+        <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
+          {/* Road */}
+          <div className="absolute inset-0 flex justify-center">
+            <div className="w-64 h-full bg-black relative">
+              {/* White road lines */}
+              <div className="loading-road-lines absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-2"></div>
+            </div>
+          </div>
+
+          {/* Bus driving towards viewer */}
+          <div className="relative z-10">
+            <img
+              src="https://i.postimg.cc/3xdgQ0wH/danfo-2.png"
+              alt="Yellow Danfo Bus"
+              className="w-64 h-64 object-contain loading-bus drop-shadow-2xl"
+            />
+          </div>
+
+          <h1 className="mt-8 text-4xl font-black tracking-tighter uppercase text-black relative z-10">Boarding...</h1>
+          <div className="mt-4 w-48 h-4 bg-black border-2 border-black p-1 relative z-10">
             <div className="h-full bg-white animate-pulse w-full"></div>
           </div>
         </div>
