@@ -302,11 +302,29 @@ const MarketPage = ({ onNavigate }) => {
             </main >
 
             {/* --- FOOTER --- */}
-            < footer className="border-t border-yellow-400 py-8 text-center" >
-                <p className="font-mono-style text-xs text-stone-600">
-                    © 2024 THE YELLOW DANFO. LAGOS, NIGERIA.
-                </p>
-            </footer >
+            <footer className="border-t-4 border-yellow-400 py-12 bg-neutral-900">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div className="flex items-center gap-4">
+                            <img
+                                src="https://i.postimg.cc/BbH97B8w/danfo-logo-copy.png"
+                                alt="The Yellow Danfo"
+                                className="h-10 w-auto opacity-70"
+                            />
+                            <div className="h-8 w-px bg-stone-700"></div>
+                            <p className="font-mono-style text-xs text-stone-500">
+                                LAGOS • LONDON
+                            </p>
+                        </div>
+                        <div className="text-center md:text-right">
+                            <p className="font-mono-style text-xs text-stone-600">
+                                © 2024 THE YELLOW DANFO. LAGOS.<br />
+                                BUILT FOR FUNMI AKISANYA.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div >
     );
 };
