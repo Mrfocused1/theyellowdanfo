@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, X, Ticket, ArrowDown, BookOpen, Shirt, Image as ImageIcon, Menu } from 'lucide-react';
+import { ShoppingBag, X, Ticket, ArrowDown, Menu } from 'lucide-react';
 
 /**
  * THE YELLOW DANFO - MARKET TERMINUS
@@ -15,14 +15,39 @@ const MarketPage = ({ onNavigate }) => {
 
     // Product Catalog
     const PRODUCTS = [
-        { id: 1, title: "The Yellow Danfo", price: "£15,000", type: "Hardcover", category: "BOOKS", tag: "DEBUT" },
-        { id: 2, title: "Lagos Rhythm", price: "£8,500", type: "Paperback", category: "BOOKS", tag: "NEW" },
-        { id: 3, title: "Eko Stories", price: "£10,000", type: "Photo Book", category: "BOOKS", tag: "LIMITED" },
-        { id: 4, title: "Route 99", price: "£5,000", type: "Zine", category: "BOOKS", tag: "ZINE" },
-        { id: 5, title: "No Shaking Tee", price: "£12,000", type: "Apparel", category: "APPAREL", tag: "MERCH" },
-        { id: 6, title: "Danfo Pattern Tote", price: "£6,000", type: "Accessory", category: "APPAREL", tag: "ECO" },
-        { id: 7, title: "Third Mainland Print", price: "£25,000", type: "Art Print", category: "PRINTS", tag: "ART" },
-        { id: 8, title: "Conductor Poster", price: "£8,000", type: "A2 Poster", category: "PRINTS", tag: "VINTAGE" },
+        { id: 1, title: "The Yellow Danfo (Book)", price: "£15.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-0c345ac.png", category: "BOOKS" },
+        { id: 2, title: "Sunshine The Miracle Child", price: "£6.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-e173850.png", category: "BOOKS" },
+        { id: 3, title: "Second-Class Citizen - Buchi Emecheta", price: "£10.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/BUCHI%20EMECHETA.jpg", category: "BOOKS" },
+        { id: 4, title: "The Lion And The Jewel - Notes by Ayotunde Oyetunde", price: "£12.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2552.jpg", category: "BOOKS" },
+        { id: 5, title: "Our Beautiful Bride by Deji Oripeloye", price: "£8.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2544.jpg", category: "BOOKS" },
+        { id: 6, title: "God Answers Okey's Prayer", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2562-fb2d90e.jpg", category: "BOOKS" },
+        { id: 7, title: "Mother Horse", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2563.jpg", category: "BOOKS" },
+        { id: 8, title: "God Sends Mfon a Bird", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2565.jpg", category: "BOOKS" },
+        { id: 9, title: "Sade At The Beach", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2568.jpg", category: "BOOKS" },
+        { id: 10, title: "The Strange Bird", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2569.jpg", category: "BOOKS" },
+        { id: 11, title: "Laraba And The King's Parrot", price: "£4.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2567.jpg", category: "BOOKS" },
+        { id: 12, title: "Abo And The Crocodile", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2546%20(1).jpg", category: "BOOKS" },
+        { id: 13, title: "King Jaja Of Opobo", price: "£8.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2555.jpg", category: "BOOKS" },
+        { id: 14, title: "My Baby Sister", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2556.jpg", category: "BOOKS" },
+        { id: 15, title: "The Wicked King", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2557.jpg", category: "BOOKS" },
+        { id: 16, title: "Trouble In The Dog Kingdom", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2550.jpg", category: "BOOKS" },
+        { id: 17, title: "The Greedy Tortoise", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2548.jpg", category: "BOOKS" },
+        { id: 18, title: "Mopelola The Tale Of A Beauty Goddess", price: "£8.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2545.jpg", category: "BOOKS" },
+        { id: 19, title: "Tortoise And The Magic Stick", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/IMG_2566.jpg", category: "BOOKS" },
+        { id: 20, title: "One Good Turn...", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2547.jpg", category: "BOOKS" },
+        { id: 21, title: "Moremi The Courageous Queen", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2546%20(1).jpg", category: "BOOKS" },
+        { id: 22, title: "Nigerian Passport Holder", price: "£5.00", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/ols/IMG_2551.jpg", category: "ACCESSORIES" },
+        { id: 23, title: "Kunle The Village Boy", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/blob-6c1fd39.png", category: "BOOKS" },
+        { id: 24, title: "Chief Koko's Bicycle And The Twin Brothers", price: "£3.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/CHIEF%20KOKO'S%20BICYCLE.jpg", category: "BOOKS" },
+        { id: 25, title: "A Greedy Woman", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/THE%20GREEDY%20WOMAN.jpg", category: "BOOKS" },
+        { id: 26, title: "The Prince's Remedy", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/THE%20PRINCE'S%20REMEDY.jpg", category: "BOOKS" },
+        { id: 27, title: "Respecting Elders", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/RESPECTING%20ELDERS.jpg", category: "BOOKS" },
+        { id: 28, title: "The King That Loves His People", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/THE%20KING%20THAT%20LOVES%20HIS%20PEOPLE.jpg", category: "BOOKS" },
+        { id: 29, title: "A Mother's Love", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/A%20MOTHERS%20LOVE.jpg", category: "BOOKS" },
+        { id: 30, title: "Chekube And Her Husband", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/CHEKUBE%20AND%20HER%20HUSBAND.jpg", category: "BOOKS" },
+        { id: 31, title: "Unforgettable Tears", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/UNFORGETTABLE%20TEARS.jpg", category: "BOOKS" },
+        { id: 32, title: "Be Polite To Elders", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/BE%20POLITE%20TO%20ELDERS.jpg", category: "BOOKS" },
+        { id: 33, title: "Be Obedient", price: "£1.50", imageUrl: "https://img1.wsimg.com/isteam/ip/80ac6c26-cf52-4e3a-b1c8-790d32133838/BE%20OBEDIENT.jpg", category: "BOOKS" },
     ];
 
     const filteredProducts = activeCategory === "ALL"
@@ -79,6 +104,7 @@ const MarketPage = ({ onNavigate }) => {
         .font-mono-style { font-family: 'Special Elite', monospace; }
         .clip-ticket { clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%); }
         .magnetic-btn:hover .btn-icon { transform: translateX(4px); }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
       `}</style>
 
             {/* --- HEADER --- */}
@@ -213,7 +239,7 @@ const MarketPage = ({ onNavigate }) => {
 
                     {/* Category Filters */}
                     <div className="flex flex-wrap justify-center gap-2 mb-12">
-                        {["ALL", "BOOKS", "APPAREL", "PRINTS"].map(cat => (
+                        {["ALL", "BOOKS", "ACCESSORIES"].map(cat => (
                             <button
                                 key={cat}
                                 onClick={() => setActiveCategory(cat)}
@@ -225,32 +251,31 @@ const MarketPage = ({ onNavigate }) => {
                     </div>
 
                     {/* Product Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                         {filteredProducts.map((product) => (
-                            <div key={product.id} className="group bg-white p-4 pb-6 transform hover:-translate-y-1 transition-all duration-300">
-                                <div className="aspect-square bg-neutral-200 mb-4 relative overflow-hidden border border-black">
-                                    {/* Product Image Placeholder */}
-                                    <div className="absolute inset-0 flex items-center justify-center bg-neutral-100 group-hover:bg-yellow-50 transition-colors">
-                                        {product.category === 'BOOKS' && <BookOpen size={48} className="text-neutral-400" />}
-                                        {product.category === 'APPAREL' && <Shirt size={48} className="text-neutral-400" />}
-                                        {product.category === 'PRINTS' && <ImageIcon size={48} className="text-neutral-400" />}
-                                    </div>
-                                    <div className="absolute top-2 left-2 bg-black text-yellow-400 text-xs font-bold px-2 py-1">{product.tag}</div>
+                            <div key={product.id} className="group bg-white p-3 md:p-4 pb-4 md:pb-6 transform hover:-translate-y-1 transition-all duration-300">
+                                <div className="aspect-[3/4] bg-neutral-200 mb-3 md:mb-4 relative overflow-hidden border border-black">
+                                    {/* Product Image */}
+                                    <img
+                                        src={product.imageUrl}
+                                        alt={product.title}
+                                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
 
                                     {/* Overlay Actions */}
                                     <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <button
                                             onClick={() => addToCart(product.title)}
-                                            className="bg-yellow-400 text-black font-display px-6 py-3 hover:bg-white transition-colors"
+                                            className="bg-yellow-400 text-black font-display px-4 md:px-6 py-2 md:py-3 text-sm md:text-base hover:bg-white transition-colors"
                                         >
                                             ADD TO WALLET
                                         </button>
                                     </div>
                                 </div>
-                                <h3 className="font-display text-2xl text-black leading-none mb-1">{product.title}</h3>
+                                <h3 className="font-display text-lg md:text-xl text-black leading-tight mb-1 line-clamp-2">{product.title}</h3>
                                 <div className="flex justify-between items-center mt-2 border-t border-black/10 pt-2">
-                                    <span className="font-mono-style text-sm text-neutral-500">{product.type}</span>
-                                    <span className="font-bold text-black">{product.price}</span>
+                                    <span className="font-mono-style text-xs md:text-sm text-neutral-500">{product.category}</span>
+                                    <span className="font-bold text-black text-sm md:text-base">{product.price}</span>
                                 </div>
                             </div>
                         ))}
