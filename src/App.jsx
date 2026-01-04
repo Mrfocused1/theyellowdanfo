@@ -354,11 +354,11 @@ const App = ({ onNavigate }) => {
           animation: roadLinesApproach 0.2s linear infinite;
         }
         .perspective-road {
-          perspective: 500px;
-          perspective-origin: 50% 40%;
+          perspective: 800px;
+          perspective-origin: 50% 30%;
         }
         .road-surface {
-          transform: rotateX(75deg);
+          transform: rotateX(70deg);
           transform-origin: 50% 100%;
         }
         .mission-bus-shadow { filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.5)); }
@@ -383,7 +383,7 @@ const App = ({ onNavigate }) => {
         <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
           {/* Perspective Road */}
           <div className="absolute inset-0 perspective-road overflow-hidden">
-            <div className="absolute bottom-0 left-0 right-0 h-[200%] road-surface bg-neutral-700">
+            <div className="absolute bottom-0 left-0 right-0 h-[500%] road-surface bg-neutral-700">
               {/* Road center line */}
               <div className="loading-road-lines absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-3"></div>
               {/* Road edge lines */}
