@@ -363,21 +363,6 @@ const App = ({ onNavigate }) => {
           transform: rotateX(75deg);
           transform-origin: 50% 100%;
         }
-        .street-side {
-          transform: rotateX(75deg) rotateY(45deg);
-          transform-origin: 50% 100%;
-        }
-        .street-side-right {
-          transform: rotateX(75deg) rotateY(-45deg);
-          transform-origin: 50% 100%;
-        }
-        @keyframes buildingsMove {
-          from { transform: translateY(0); }
-          to { transform: translateY(100px); }
-        }
-        .street-buildings {
-          animation: buildingsMove 0.5s linear infinite;
-        }
         .mission-bus-shadow { filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.5)); }
         .dashed-road {
           background-image: linear-gradient(to bottom, #444 50%, transparent 50%);
@@ -397,50 +382,7 @@ const App = ({ onNavigate }) => {
 
       {/* --- INITIAL LOADING ANIMATION (DRIVING BUS) --- */}
       {loading && (
-        <div className="fixed inset-0 z-[100] bg-gradient-to-b from-blue-300 via-blue-200 to-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
-
-          {/* Left Street Side - Nigerian Buildings */}
-          <div className="absolute left-0 top-0 bottom-0 w-1/3 overflow-hidden">
-            <div className="street-buildings absolute inset-0 flex flex-col gap-2 pt-[20%]">
-              {[...Array(8)].map((_, i) => (
-                <div key={`left-${i}`} className="flex gap-1 justify-end pr-4">
-                  <div className={`w-16 h-20 ${['bg-orange-600', 'bg-pink-500', 'bg-green-600', 'bg-blue-500', 'bg-red-500', 'bg-purple-500', 'bg-teal-500', 'bg-amber-600'][i % 8]} border-2 border-black relative`}>
-                    <div className="absolute top-2 left-2 w-4 h-6 bg-blue-200 border border-black"></div>
-                    <div className="absolute top-2 right-2 w-4 h-6 bg-blue-200 border border-black"></div>
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-8 bg-amber-800 border border-black"></div>
-                  </div>
-                  <div className={`w-12 h-16 ${['bg-yellow-500', 'bg-red-400', 'bg-green-500', 'bg-blue-400', 'bg-orange-400', 'bg-pink-400', 'bg-cyan-500', 'bg-lime-500'][i % 8]} border-2 border-black relative`}>
-                    <div className="absolute top-1 left-1 right-1 h-4 bg-white/50 border border-black text-[6px] text-center font-bold">SHOP</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {/* Palm tree silhouettes */}
-            <div className="absolute top-[30%] right-8 text-green-800 text-6xl">🌴</div>
-            <div className="absolute top-[50%] right-4 text-green-700 text-4xl">🌴</div>
-          </div>
-
-          {/* Right Street Side - Nigerian Buildings */}
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 overflow-hidden">
-            <div className="street-buildings absolute inset-0 flex flex-col gap-2 pt-[20%]">
-              {[...Array(8)].map((_, i) => (
-                <div key={`right-${i}`} className="flex gap-1 pl-4">
-                  <div className={`w-12 h-16 ${['bg-cyan-500', 'bg-lime-500', 'bg-rose-500', 'bg-indigo-500', 'bg-emerald-500', 'bg-fuchsia-500', 'bg-sky-500', 'bg-violet-500'][i % 8]} border-2 border-black relative`}>
-                    <div className="absolute top-1 left-1 right-1 h-4 bg-white/50 border border-black text-[6px] text-center font-bold">KIOSK</div>
-                  </div>
-                  <div className={`w-16 h-20 ${['bg-amber-500', 'bg-rose-600', 'bg-teal-600', 'bg-violet-600', 'bg-lime-600', 'bg-sky-600', 'bg-fuchsia-600', 'bg-emerald-600'][i % 8]} border-2 border-black relative`}>
-                    <div className="absolute top-2 left-2 w-4 h-6 bg-blue-200 border border-black"></div>
-                    <div className="absolute top-2 right-2 w-4 h-6 bg-blue-200 border border-black"></div>
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-8 bg-amber-800 border border-black"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {/* Palm tree silhouettes */}
-            <div className="absolute top-[25%] left-4 text-green-800 text-5xl">🌴</div>
-            <div className="absolute top-[45%] left-8 text-green-700 text-4xl">🌴</div>
-          </div>
-
+        <div className="fixed inset-0 z-[100] bg-yellow-400 flex items-center justify-center flex-col loading-fadeout overflow-hidden">
           {/* Perspective Road */}
           <div className="absolute inset-0 perspective-road overflow-hidden">
             <div className="absolute bottom-0 left-0 right-0 h-[200%] road-surface bg-neutral-700">
