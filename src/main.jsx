@@ -11,6 +11,9 @@ const Router = () => {
   const [hasLoaded, setHasLoaded] = useState(false); // Track if site has done initial load
 
   const handleNavigate = (destination) => {
+    // Scroll to top when navigating to a new page
+    window.scrollTo(0, 0);
+
     // Check if destination includes an overlay (e.g., 'home:contact')
     if (destination.includes(':')) {
       const [page, overlay] = destination.split(':');
