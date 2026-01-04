@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { ShoppingBag, MapPin, Menu, ArrowDown, Ticket, Info, Heart, Users, BookOpen, X, Play } from 'lucide-react';
+import { ShoppingBag, MapPin, Menu, ArrowDown, Ticket, Info, Heart, Users, BookOpen, X, Play, Compass, Mail, FileText, CheckCircle } from 'lucide-react';
 
 // DanfoBus SVG Component (Front View)
 const DanfoBus = ({ view = 'front', className, style }) => {
@@ -44,6 +44,8 @@ const App = ({ onNavigate }) => {
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [missionOpen, setMissionOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [formStatus, setFormStatus] = useState("IDLE"); // IDLE, SENDING, SENT
   const [currentStop, setCurrentStop] = useState("BOARDING");
   const [lastTicket, setLastTicket] = useState(null);
   const [gsapLoaded, setGsapLoaded] = useState(false);
@@ -55,6 +57,7 @@ const App = ({ onNavigate }) => {
   const busIconRef = useRef(null);
   const destinationTextRef = useRef(null);
   const missionContainerRef = useRef(null);
+  const contactContainerRef = useRef(null);
 
   // --- CONTENT DATA ---
   const STOPS = [
@@ -268,6 +271,27 @@ const App = ({ onNavigate }) => {
     };
   }, [gsapLoaded, missionOpen]);
 
+  // --- CONTACT "CONDUCTOR'S MANIFEST" ANIMATION ---
+  useEffect(() => {
+    if (!gsapLoaded || !contactOpen || !contactContainerRef.current) return;
+    const gsap = window.gsap;
+
+    setFormStatus("IDLE");
+
+    // Bus Panel Slide In
+    gsap.fromTo(".danfo-panel",
+      { y: 800, rotation: -5, opacity: 0 },
+      { y: 0, rotation: -1, opacity: 1, duration: 0.8, ease: "power3.out" }
+    );
+
+    // Engine Idle Vibration
+    gsap.to(".danfo-panel", {
+      x: 1, y: 1, rotation: -1.2,
+      duration: 0.1, repeat: -1, yoyo: true, ease: "none", delay: 0.8
+    });
+
+  }, [gsapLoaded, contactOpen]);
+
   // --- HELPERS ---
   const updateDestination = (text) => {
     if (!destinationTextRef.current) return;
@@ -298,6 +322,18 @@ const App = ({ onNavigate }) => {
           }
         }
       );
+    }
+  };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    setFormStatus("SENDING");
+    if (window.gsap) {
+      const tl = window.gsap.timeline();
+      // Physical Stamp Animation
+      tl.to(".ink-stamp", { scale: 1.5, opacity: 1, duration: 0.2, ease: "power4.in" }) // Stamp hits paper
+        .to(".ink-stamp", { scale: 1, rotation: "random(-5, 5)", duration: 0.1, ease: "bounce.out" })
+        .add(() => setFormStatus("SENT"));
     }
   };
 
@@ -372,6 +408,26 @@ const App = ({ onNavigate }) => {
         }
         .dashed-road-line {
           animation: roadScroll 0.3s linear infinite;
+        }
+        /* Manifest Styles */
+        .manifest-paper {
+          background-image: linear-gradient(#e5e5e5 1px, transparent 1px);
+          background-size: 100% 2.5em;
+          line-height: 2.5em;
+        }
+        .tape-corner {
+          position: absolute;
+          width: 80px;
+          height: 30px;
+          background-color: rgba(255, 255, 255, 0.4);
+          transform: rotate(45deg);
+          backdrop-filter: blur(2px);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .ink-stamp {
+          transform: scale(2);
+          opacity: 0;
+          pointer-events: none;
         }
       `}</style>
 
@@ -558,6 +614,8 @@ const App = ({ onNavigate }) => {
                   setMissionOpen(true);
                 } else if (item === 'Market' && onNavigate) {
                   onNavigate('market');
+                } else if (item === 'Contact') {
+                  setContactOpen(true);
                 }
                 setMenuOpen(false);
               }}
@@ -635,6 +693,94 @@ const App = ({ onNavigate }) => {
                 SCROLL TO DRIVE
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* --- CONTACT "CONDUCTOR'S MANIFEST" OVERLAY --- */}
+      <div
+        ref={contactContainerRef}
+        className={`fixed inset-0 z-[75] bg-black/90 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] flex items-center justify-center p-4 ${contactOpen ? 'translate-y-0' : '-translate-y-full'}`}
+      >
+        {/* Danfo Panel Background */}
+        <div className="danfo-panel relative w-full max-w-4xl bg-yellow-400 p-2 md:p-4 rounded-xl shadow-2xl overflow-hidden border-8 border-black">
+
+          {/* Decor: Black Stripes */}
+          <div className="absolute top-12 left-0 right-0 h-12 bg-black"></div>
+          <div className="absolute bottom-12 left-0 right-0 h-12 bg-black"></div>
+
+          {/* Inner Content Area */}
+          <div className="relative z-10 grid md:grid-cols-12 gap-8 p-4 md:p-8">
+
+            {/* Left Info Panel */}
+            <div className="md:col-span-4 flex flex-col justify-between text-black bg-white/20 p-6 backdrop-blur-sm border-2 border-black rounded shadow-lg transform -rotate-1">
+              <div>
+                <h2 className="font-display text-4xl mb-2 leading-none">LAGOS <br /> DISPATCH</h2>
+                <div className="h-1 w-20 bg-black mb-4"></div>
+                <p className="font-mono-style text-xs font-bold mb-6">ROUTE: LAGOS ↔ LONDON</p>
+
+                <div className="space-y-4 font-mono-style text-sm">
+                  <p className="flex items-center gap-2"><MapPin size={16} /> 124 Mainland Bridge</p>
+                  <p className="flex items-center gap-2"><Mail size={16} /> hello@yellowdanfo.com</p>
+                </div>
+              </div>
+              <div className="mt-8 border-t-2 border-black pt-4 text-xs font-bold">
+                <p>DRIVER ID: #LAD-505</p>
+                <p>STATUS: ON DUTY</p>
+              </div>
+            </div>
+
+            {/* Right: The Manifest (Form) */}
+            <div className="md:col-span-8 relative">
+              {/* Paper Effect */}
+              <div className="bg-stone-100 p-8 shadow-2xl relative manifest-paper transform rotate-1 border border-stone-300">
+
+                {/* Tapes */}
+                <div className="tape-corner -top-3 -left-3"></div>
+                <div className="tape-corner -top-3 -right-3 transform -rotate-45"></div>
+                <div className="tape-corner -bottom-3 -left-3 transform -rotate-45"></div>
+                <div className="tape-corner -bottom-3 -right-3"></div>
+
+                {/* Stamp Animation Layer */}
+                <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
+                  <div className={`ink-stamp border-4 border-red-600 text-red-600 font-display text-6xl md:text-8xl p-4 -rotate-12 bg-stone-100/90 mix-blend-multiply ${formStatus === 'SENT' ? 'opacity-100' : 'opacity-0'}`}>
+                    CLEARED
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center mb-6 border-b-2 border-black pb-2">
+                  <h3 className="font-mono-style text-lg font-bold">PASSENGER MANIFEST</h3>
+                  <button onClick={() => setContactOpen(false)}><X className="text-black hover:text-red-600" size={24} /></button>
+                </div>
+
+                <form onSubmit={handleContactSubmit} className="space-y-6">
+                  <div className="space-y-1">
+                    <label className="font-mono-style text-xs font-bold text-stone-500">FULL NAME</label>
+                    <input type="text" className="w-full bg-transparent border-b-2 border-stone-300 focus:border-black outline-none font-mono-style text-lg py-1 transition-colors text-black" placeholder="Write Name Here" required disabled={formStatus === 'SENT'} />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="font-mono-style text-xs font-bold text-stone-500">CONTACT FREQUENCY (EMAIL)</label>
+                    <input type="email" className="w-full bg-transparent border-b-2 border-stone-300 focus:border-black outline-none font-mono-style text-lg py-1 transition-colors text-black" placeholder="email@address.com" required disabled={formStatus === 'SENT'} />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="font-mono-style text-xs font-bold text-stone-500">MESSAGE LOG</label>
+                    <textarea rows="3" className="w-full bg-transparent border-b-2 border-stone-300 focus:border-black outline-none font-mono-style text-lg py-1 transition-colors resize-none leading-8 text-black" placeholder="Enter message details..." required disabled={formStatus === 'SENT'}></textarea>
+                  </div>
+
+                  <div className="pt-4 flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={formStatus !== 'IDLE'}
+                      className="bg-black text-white font-display text-xl px-8 py-3 hover:bg-stone-800 transition-colors flex items-center gap-2 clip-ticket"
+                    >
+                      {formStatus === 'IDLE' ? 'HAND TO CONDUCTOR' : (formStatus === 'SENDING' ? 'PROCESSING...' : 'LOGGED')}
+                      {formStatus === 'SENT' && <CheckCircle size={18} className="text-green-400" />}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
