@@ -1235,7 +1235,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
         </section>
 
         {/* THE DRIVER'S SEAT */}
-        <section id="stop-2" className="min-h-screen flex items-center relative py-20 bg-neutral-900/50 border-y border-white/5">
+        <section id="stop-2" className="py-12 md:py-16 flex items-center relative bg-neutral-900/50 border-y border-white/5">
           <div className="container mx-auto px-6 max-w-3xl text-center">
             <div className="font-mono-style text-yellow-400 mb-4">THE CONDUCTOR</div>
             <h2 className="font-display text-5xl md:text-7xl mb-6">THE DRIVER'S <br /> SEAT</h2>
