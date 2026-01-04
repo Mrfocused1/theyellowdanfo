@@ -1151,9 +1151,9 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
         </section>
 
         {/* STOP 03: ORIGIN */}
-        <section id="stop-3" className="min-h-[60vh] md:min-h-[70vh] flex items-center justify-center relative py-10 md:py-16">
+        <section id="stop-3" className="flex items-center justify-center relative py-8 md:py-12 -mt-16 md:-mt-20">
           <div className="container mx-auto px-6 text-center max-w-4xl">
-            <div className="parallax-bg-3 inline-block">
+            <div className="inline-block">
               <div className="bus-stripe h-4 w-full mb-8"></div>
               <p className="font-serif italic text-2xl md:text-4xl leading-relaxed text-stone-200">
                 "Our journey began with a book — <span className="text-yellow-400 not-italic font-bold">The Yellow Danfo: At the Frontier of Sustainable Transportation</span> (October 2023). What started as a cultural blueprint and a moving manifesto has evolved…"
