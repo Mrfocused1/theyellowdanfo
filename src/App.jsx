@@ -1127,24 +1127,24 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
             <div className="inline-block bg-yellow-400 text-black px-3 py-1 font-mono-style font-bold mb-6 rotate-2">
               LAGOS • LONDON
             </div>
-            <h1 className="font-display text-7xl md:text-9xl mb-6 text-white drop-shadow-lg leading-[0.9]">
-              THE <span className="text-yellow-400">YELLOW</span><br /> DANFO
+            <h1 className="font-display text-5xl md:text-7xl mb-6 text-white drop-shadow-lg leading-[0.9]">
+              A <span className="text-yellow-400">LITERARY</span> AND<br />CULTURAL ECOSYSTEM
             </h1>
-            <p className="font-mono-style text-stone-300 max-w-xl mx-auto mb-10 text-lg">
-              Step inside The Yellow Danfo, where sustainable transportation meets culture, creativity, and the stories that move us.
+            <p className="font-mono-style text-stone-300 max-w-2xl mx-auto mb-10 text-lg">
+              Your Cultural Chauffeur: Reconnecting African Diasporas with Heritage Through Literature, Storytelling & Community
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <button
                 onClick={() => onNavigate && onNavigate('market')}
                 className="bg-yellow-400 text-black font-display text-xl px-8 py-4 hover:bg-white transition-colors clip-ticket border-b-4 border-black active:translate-y-1 active:border-b-0"
               >
-                ENTER SHOP
+                START YOUR JOURNEY
               </button>
               <button
                 onClick={() => setMissionOpen(true)}
                 className="border-2 border-yellow-400 text-yellow-400 font-display text-xl px-8 py-4 hover:bg-yellow-400/10 transition-colors"
               >
-                WHAT WE DO
+                READ OUR STORY
               </button>
             </div>
           </div>
