@@ -1179,7 +1179,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                   onClick={() => addToCart("The Yellow Danfo")}
                   className="bg-black text-white px-8 py-3 font-display text-xl hover:bg-white hover:text-black transition-colors flex items-center gap-2"
                 >
-                  BUY TICKET <Ticket size={18} />
+                  BUY BOOK <Ticket size={18} />
                 </button>
               </div>
             </div>
