@@ -566,11 +566,12 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
             <div ref={routeLineRef} className="w-full bg-yellow-400 h-full absolute top-0 left-0 origin-top"></div>
           </div>
           {/* Bus Icon Marker */}
-          <div ref={busIconRef} className="absolute top-0 left-1/2 -translate-x-1/2 text-yellow-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
-            <div className="w-8 h-12 bg-black border-2 border-yellow-400 rounded-lg flex flex-col items-center justify-center p-1">
-              <div className="w-full h-4 bg-yellow-400/20 mb-1 rounded-sm"></div>
-              <div className="w-1 h-1 bg-red-500 rounded-full animate-pulse"></div>
-            </div>
+          <div ref={busIconRef} className="absolute top-0 left-1/2 -translate-x-1/2 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
+            <img
+              src="https://i.postimg.cc/4xZ5Cx9x/danfo-top-down.png"
+              alt="Danfo Bus"
+              className="w-10 h-auto"
+            />
           </div>
         </div>
 
@@ -1179,7 +1180,7 @@ const App = ({ onNavigate, initialOverlay, onOverlayOpened, skipLoading, onLoadC
                   onClick={() => addToCart("The Yellow Danfo")}
                   className="bg-black text-white px-8 py-3 font-display text-xl hover:bg-white hover:text-black transition-colors flex items-center gap-2"
                 >
-                  BUY TICKET <Ticket size={18} />
+                  BUY BOOK <Ticket size={18} />
                 </button>
               </div>
             </div>
