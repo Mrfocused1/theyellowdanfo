@@ -600,7 +600,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
                         <div className="parallax-bg-3 inline-block">
                             <div className="bus-stripe h-4 w-full mb-8"></div>
                             <p className="font-serif italic text-2xl md:text-4xl leading-relaxed text-stone-200">
-                                "Our journey began with a book — <span className="text-yellow-400 not-italic font-bold">The Yellow Danfo: At the Frontier of Sustainable Transportation</span> (October 2023). What started as a cultural blueprint and a moving manifesto has evolved…"
+                                The Yellow Danfo is a literary and cultural ecosystem that celebrates African storytelling, creativity, and heritage.
                             </p>
                             <div className="bus-stripe h-4 w-full mt-8"></div>
                         </div>
