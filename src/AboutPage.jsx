@@ -24,7 +24,7 @@ const AboutPage = ({ onNavigate, autoOpenMission = false }) => {
 
     // --- CONTENT DATA ---
     const STOPS = [
-        { id: 1, title: "BOARDING: DEPOT", label: "STOP 01" },
+        { id: 1, title: "LAGOS MOTOR PARK", label: "STOP 01" },
         { id: 2, title: "THE DRIVER: FUNMI", label: "STOP 02" },
         { id: 3, title: "ORIGIN: FROM A BOOK", label: "STOP 03" },
         { id: 4, title: "FEATURED BOOK", label: "STOP 04" },
